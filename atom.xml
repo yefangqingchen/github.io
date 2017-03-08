@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>夜方轻尘</title>
+  <title>学到的越多，就越是能发现自己有多么渺小。</title>
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://www.yefangqingchen.com/"/>
   <updated>2017-03-07T01:52:38.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://www.yefangqingchen.com/</id>
   
   <author>
     <name>yefangqingchen</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2017/03/07/hello-world/"/>
-    <id>http://yoursite.com/2017/03/07/hello-world/</id>
+    <link href="http://www.yefangqingchen.com/2017/03/07/hello-world/"/>
+    <id>http://www.yefangqingchen.com/2017/03/07/hello-world/</id>
     <published>2017-03-07T01:52:38.000Z</published>
     <updated>2017-03-07T01:52:38.000Z</updated>
     
