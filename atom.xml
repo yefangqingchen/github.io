@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yefangqingchen.com/"/>
-  <updated>2017-03-07T01:52:38.000Z</updated>
+  <updated>2017-03-08T09:21:13.000Z</updated>
   <id>http://www.yefangqingchen.com/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么现在才选择写博客</title>
+    <link href="http://www.yefangqingchen.com/2017/03/08/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%8E%B0%E5%9C%A8%E6%89%8D%E9%80%89%E6%8B%A9%E5%86%99%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://www.yefangqingchen.com/2017/03/08/为什么现在才选择写博客/</id>
+    <published>2017-03-08T08:24:13.000Z</published>
+    <updated>2017-03-08T09:21:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="为什么现在才决定开始写博客？"><a href="#为什么现在才决定开始写博客？" class="headerlink" title="为什么现在才决定开始写博客？"></a>为什么现在才决定开始写博客？</h1><hr>
+<p>追随前辈们的脚步，工作几年的我也开始决定写博客。很早就萌发了要自己搭建站点写博客的想法，记录下生活、总结下技术难点等等，但是因为自己的拖延症、怕麻烦就拖到了现在。还有就是因为自己觉得自己一直没有从始到终都是自己写的开源项目、或者控件工具之类的。不想把别人的东西复制过来改改，然后在上传到自己的github。我觉得这样没什么意思。</p>
+<p>但是为什么现在又决定开始写呢 ？ </p>
+<p>因为工作几年后开始发现自己的技术增长的太慢，发现遇到了瓶颈，仿佛又回到了几年前的状态变得迷茫不知道该怎么办。</p>
+<p>作为从事IT行业的我来说，生活在这个节奏快、人心浮躁、知识日月更新的城市和时代只有每天让自己忙碌和进步才能让自己感到不心慌、不被淘汰。所以现在我才决定要开始写博客。</p>
+<p>现在打算重新把基础书籍复习一次，把以往和现在再工作中学到的知识、难点记录起来。然后在自己慢慢做一个开源的项目。</p>
+<p>并且写博客确实有很多好处：</p>
+<blockquote>
+<ul>
+<li>整理知识，学习笔记</li>
+<li>让自己变得更加自信，让自己变的冷静下来</li>
+<li>发布日记，杂文，呈现所想，将其暴露在外，这能让错误和正确都更加明显，以便改正和巩固，帮助自己很好的认识自己。</li>
+</ul>
+</blockquote>
+<p>感想</p>
+<blockquote>
+<ul>
+<li>知道的越多懂得越多，越是能能发现自己有多么渺小和无知。多去听听别人的声音，可以知道人外有人，山外有山，也能衡量自己的实力。不妄自菲薄，也不骄傲自满。保持学习，努力，坚持。</li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;为什么现在才决定开始写博客？&quot;&gt;&lt;a href=&quot;#为什么现在才决定开始写博客？&quot; class=&quot;headerlink&quot; title=&quot;为什么现在才决定开始写博客？&quot;&gt;&lt;/a&gt;为什么现在才决定开始写博客？&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;追随前辈们的脚步，工作几年的我也开
+    
+    </summary>
+    
+    
+      <category term="心情杂记" scheme="http://www.yefangqingchen.com/tags/%E5%BF%83%E6%83%85%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
