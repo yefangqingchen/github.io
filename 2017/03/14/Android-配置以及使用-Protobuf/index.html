@@ -87,38 +87,38 @@
 
 
 
-<meta name="description" content="Android 配置以及使用 Protobuf======
+<meta name="description" content="======
 
 因为最近公司要求在新的APP版本上和后台通信使用protobuf，因为我之前也没有听说过这是啥，所以在使用的过程中也记录一下使用的过程。至于Protobuf是什么有什么优点缺点就不写了，google一下一大堆。这里记一下笔记。
 
 Protobuf 配置======
 
-现在Android开发基本都是用 Android Studio 开始，">
+现在Android开发基本都是用 Android Studio 开始，所以我们只需要在Android Studio里">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 配置以及使用 Protobuf">
 <meta property="og:url" content="http://www.yefangqingchen.com/2017/03/14/Android-配置以及使用-Protobuf/index.html">
 <meta property="og:site_name" content="学到的越多，越是能发现自己有多么渺小。">
-<meta property="og:description" content="Android 配置以及使用 Protobuf======
+<meta property="og:description" content="======
 
 因为最近公司要求在新的APP版本上和后台通信使用protobuf，因为我之前也没有听说过这是啥，所以在使用的过程中也记录一下使用的过程。至于Protobuf是什么有什么优点缺点就不写了，google一下一大堆。这里记一下笔记。
 
 Protobuf 配置======
 
-现在Android开发基本都是用 Android Studio 开始，">
+现在Android开发基本都是用 Android Studio 开始，所以我们只需要在Android Studio里">
 <meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/blog_protobuf_1.jpeg">
 <meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/WechatIMG5.jpeg">
 <meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/WechatIMG6.jpeg">
 <meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/blog_protobuf_4.jpeg">
-<meta property="og:updated_time" content="2017-03-14T10:34:42.000Z">
+<meta property="og:updated_time" content="2017-03-14T10:37:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 配置以及使用 Protobuf">
-<meta name="twitter:description" content="Android 配置以及使用 Protobuf======
+<meta name="twitter:description" content="======
 
 因为最近公司要求在新的APP版本上和后台通信使用protobuf，因为我之前也没有听说过这是啥，所以在使用的过程中也记录一下使用的过程。至于Protobuf是什么有什么优点缺点就不写了，google一下一大堆。这里记一下笔记。
 
 Protobuf 配置======
 
-现在Android开发基本都是用 Android Studio 开始，">
+现在Android开发基本都是用 Android Studio 开始，所以我们只需要在Android Studio里">
 <meta name="twitter:image" content="http://omsqy2wls.bkt.clouddn.com/blog_protobuf_1.jpeg">
 
 
@@ -428,7 +428,7 @@ Protobuf 配置======
       
 
       
-        <h1 id="Android-配置以及使用-Protobuf"><a href="#Android-配置以及使用-Protobuf" class="headerlink" title="Android 配置以及使用 Protobuf"></a>Android 配置以及使用 Protobuf</h1><p>======</p>
+        <p>======</p>
 <blockquote>
 <p>因为最近公司要求在新的APP版本上和后台通信使用protobuf，因为我之前也没有听说过这是啥，所以在使用的过程中也记录一下使用的过程。<br>至于Protobuf是什么有什么优点缺点就不写了，google一下一大堆。这里记一下笔记。</p>
 </blockquote>
@@ -447,14 +447,12 @@ Protobuf 配置======
 <p>添加代码</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.android.application'</span></div><div class="line">apply plugin: <span class="string">'com.google.protobuf'</span><span class="comment">//添加此行</span></div><div class="line"></div><div class="line"></div><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">25</span></div><div class="line">    buildToolsVersion <span class="string">"25.0.2"</span></div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId <span class="string">"rock.example.com"</span></div><div class="line">        minSdkVersion <span class="number">15</span></div><div class="line">        targetSdkVersion <span class="number">25</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line">        testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">    &#125;</div><div class="line">    buildTypes &#123;</div><div class="line">        release &#123;</div><div class="line">            <span class="function">minifyEnabled <span class="keyword">false</span></span></div><div class="line">            proguardFiles <span class="title">getDefaultProguardFile</span><span class="params">(<span class="string">'proguard-android.txt'</span>)</span>, 'proguard-rules.pro'</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    dataBinding &#123;</div><div class="line">        enabled = <span class="keyword">true</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//添加此段</span></div><div class="line">protobuf &#123;</div><div class="line">    <span class="comment">//配置protoc编译器</span></div><div class="line">    protoc &#123;</div><div class="line">        artifact = <span class="string">'com.google.protobuf:protoc:3.0.0-alpha-3'</span></div><div class="line">    &#125;</div><div class="line">    plugins &#123;</div><div class="line">        javalite &#123;</div><div class="line">            artifact = <span class="string">'com.google.protobuf:protoc-gen-javalite:3.0.0'</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//这里配置生成目录，编译后会在build的目录下生成对应的java文件</span></div><div class="line">    generateProtoTasks &#123;</div><div class="line">        all().each &#123; task -&gt;</div><div class="line">            task.plugins &#123;</div><div class="line">                javalite &#123;&#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">    <span class="function">compile <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>,</span></span></div><div class="line">            include: [<span class="string">'*.jar'</span>])</div><div class="line">    <span class="title">androidTestCompile</span><span class="params">(<span class="string">'com.android.support.test.espresso:espresso-core:2.2.2'</span>, &#123;</span></div><div class="line">        exclude group: <span class="string">'com.android.support'</span>, <span class="keyword">module</span>: <span class="string">'support-annotations'</span></div><div class="line">    &#125;)</div><div class="line">    compile 'com.android.support:appcompat-v7:25.2.0'</div><div class="line">    compile 'com.android.support:design:25.2.0'</div><div class="line">    testCompile 'junit:junit:4.12'</div><div class="line">    compile 'com.google.protobuf:protobuf-lite:3.0.0'<span class="comment">//添加此行</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>###3. app/main目录下创建proto目录，存放.proto文件</p>
-<p><img src="http://omsqy2wls.bkt.clouddn.com/WechatIMG6.jpeg" alt="此处输入图片的描述"></p>
+<h3 id="3-app-main目录下创建proto目录，存放-proto文件"><a href="#3-app-main目录下创建proto目录，存放-proto文件" class="headerlink" title="3. app/main目录下创建proto目录，存放.proto文件"></a>3. app/main目录下创建proto目录，存放.proto文件</h3><p><img src="http://omsqy2wls.bkt.clouddn.com/WechatIMG6.jpeg" alt="此处输入图片的描述"></p>
 <blockquote>
 <p>创建.proto文件</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//proto的版本</span></div><div class="line">syntax = <span class="string">"proto3"</span>;</div><div class="line"></div><div class="line"><span class="comment">//如果设置生成的Java文件也将会自动存放到指定输出目录下的rock.example.com.model目录中。</span></div><div class="line"><span class="comment">//如果没有设置，Java的包名则为package关键字指定的名称</span></div><div class="line">option java_package = <span class="string">"rock.example.com.model"</span>;</div><div class="line"><span class="comment">//如果设置生成的java文件名为UserProto，如果没有设置默认名为.proto文件名</span></div><div class="line">option java_outer_classname = <span class="string">"UserProto"</span>;</div><div class="line"></div><div class="line">message UserData&#123;</div><div class="line">	int64 id = <span class="number">1</span>;</div><div class="line">	string name = <span class="number">2</span>;</div><div class="line">	string msg = <span class="number">3</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>###4. 生成对应文件</p>
-<ol>
+<h3 id="4-生成对应文件"><a href="#4-生成对应文件" class="headerlink" title="4. 生成对应文件"></a>4. 生成对应文件</h3><ol>
 <li>Build - &gt; Clean Project</li>
 <li>Build - &gt; Rebulid Project</li>
 </ol>
@@ -462,8 +460,7 @@ Protobuf 配置======
 <p> 构建完了之后可以在工程的 app/build/generated/source/proto/debug/javalite/中找到UserProto</p>
 </blockquote>
 <p><img src="http://omsqy2wls.bkt.clouddn.com/blog_protobuf_4.jpeg" alt="此处输入图片的描述"></p>
-<p>###5. 请求网络填充UserProto并使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">liteHttp.execute(<span class="keyword">new</span> ByteString(url).setHttpListener(<span class="keyword">new</span> HttpListener&lt;String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(ByteString data, Response&lt;ByteString&gt; response)</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">        UserProto.UserData userProto = UserProto.UserData.parseFrom(data);</div><div class="line"></div><div class="line">        System.out.println(userProto.getName());</div><div class="line">        System.out.println(userProto.getMsg());</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">));</div></pre></td></tr></table></figure>
+<h3 id="5-请求网络填充UserProto并使用"><a href="#5-请求网络填充UserProto并使用" class="headerlink" title="5. 请求网络填充UserProto并使用"></a>5. 请求网络填充UserProto并使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">liteHttp.execute(<span class="keyword">new</span> ByteString(url).setHttpListener(<span class="keyword">new</span> HttpListener&lt;String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(ByteString data, Response&lt;ByteString&gt; response)</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">        UserProto.UserData userProto = UserProto.UserData.parseFrom(data);</div><div class="line"></div><div class="line">        System.out.println(userProto.getName());</div><div class="line">        System.out.println(userProto.getMsg());</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">));</div></pre></td></tr></table></figure>
 <hr>
 <blockquote>
 <p>参考链接</p>
@@ -688,7 +685,7 @@ Protobuf 配置======
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-配置以及使用-Protobuf"><span class="nav-number">1.</span> <span class="nav-text">Android 配置以及使用 Protobuf</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Protobuf-配置"><span class="nav-number">1.1.</span> <span class="nav-text">Protobuf 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-打开project的build-gradle文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 打开project的build.gradle文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-打开在app的build-gradle中配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 打开在app的build.gradle中配置</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Protobuf-配置"><span class="nav-number">1.</span> <span class="nav-text">Protobuf 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-打开project的build-gradle文件"><span class="nav-number">1.1.</span> <span class="nav-text">1. 打开project的build.gradle文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-打开在app的build-gradle中配置"><span class="nav-number">1.2.</span> <span class="nav-text">2. 打开在app的build.gradle中配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-app-main目录下创建proto目录，存放-proto文件"><span class="nav-number">1.3.</span> <span class="nav-text">3. app/main目录下创建proto目录，存放.proto文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-生成对应文件"><span class="nav-number">1.4.</span> <span class="nav-text">4. 生成对应文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-请求网络填充UserProto并使用"><span class="nav-number">1.5.</span> <span class="nav-text">5. 请求网络填充UserProto并使用</span></a></li></ol></li></ol></div>
             
 
           </div>
