@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yefangqingchen.com/"/>
-  <updated>2017-03-20T10:02:41.000Z</updated>
+  <updated>2017-03-20T10:05:36.000Z</updated>
   <id>http://www.yefangqingchen.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.yefangqingchen.com/2017/03/20/RxJava-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://www.yefangqingchen.com/2017/03/20/RxJava-学习笔记/</id>
     <published>2017-03-20T09:58:05.000Z</published>
-    <updated>2017-03-20T10:02:41.000Z</updated>
+    <updated>2017-03-20T10:05:36.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>大概就是说RxJava是Java VM上一个灵活的、使用可观测序列来组成的一个异步的、基于事件的库。<br>Observables可以发出一系列的 事件，这里的事件可以是任何东西，例如网络请求、复杂计算处理、数据库操作、文件操作等等，事件执行结束后交给 Observer/Subscriber 的回调处理。</p>
@@ -29,7 +29,7 @@
 <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><blockquote>
 <p> View 是 被观察者（Observable/Subscriber）， OnClickListener 是 观察者（Observer），setOnClickListener() 是 Subscrib。</p>
 </blockquote>
-<table class="table table-bordered table-striped table-condensed"><br>    <tr><br>        <td>Observer/Subscriber</td><br>        <td>观察者</td><br>        <td>事件的消费者</td><br>    </tr><br>    <tr><br>        <td>Observable</td><br>        <td>被观察者</td><br>        <td>事件的产生者</td><br>    </tr><br>    <tr><br>        <td>Subscrib</td><br>        <td>订阅者</td><br>        <td>用于关联消费者和生产者</td><br>    </tr><br>    <tr><br>        <td>事件</td><br>    </tr><br></table>
+<table><br>    <tr><br>        <td>Observer/Subscriber</td><br>        <td>观察者</td><br>        <td>事件的消费者</td><br>    </tr><br>    <tr><br>        <td>Observable</td><br>        <td>被观察者</td><br>        <td>事件的产生者</td><br>    </tr><br>    <tr><br>        <td>Subscrib</td><br>        <td>订阅者</td><br>        <td>用于关联消费者和生产者</td><br>    </tr><br>    <tr><br>        <td>事件</td><br>    </tr><br></table>
 
 <p><img src="http://omsqy2wls.bkt.clouddn.com/WechatIMG2.jpeg" alt="此处输入图片的描述"></p>
 <table class="table table-bordered table-striped table-condensed"><br>    <tr><br>        <td>onNext()</td><br>        <td>Observable调用这个方法发送数据，Observer中接受数据</td><br>    </tr><br>    <tr><br>        <td>onCompleted()</td><br>        <td>事件队列完结触发,队列自动终止不在执行其他方法</td><br>    </tr><br>    <tr><br>        <td>onError()</td><br>        <td>在事件处理过程中出异常时触发，队列自动终止不在执行其他方法</td><br>    </tr><br>    <tr><br>        <td>注意</td><br>        <td>onCompleted()和onError()在队列中调用了其中一个，就不应该再调用另一个。</td><br>    </tr><br></table>
