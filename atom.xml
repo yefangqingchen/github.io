@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yefangqingchen.com/"/>
-  <updated>2017-03-20T10:00:31.000Z</updated>
+  <updated>2017-03-20T10:02:41.000Z</updated>
   <id>http://www.yefangqingchen.com/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="http://www.yefangqingchen.com/2017/03/20/RxJava-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://www.yefangqingchen.com/2017/03/20/RxJava-学习笔记/</id>
     <published>2017-03-20T09:58:05.000Z</published>
-    <updated>2017-03-20T10:00:31.000Z</updated>
+    <updated>2017-03-20T10:02:41.000Z</updated>
     
-    <content type="html"><![CDATA[<pre><code>大概就是说RxJava是Java VM上一个灵活的、使用可观测序列来组成的一个异步的、基于事件的库。
-Observables可以发出一系列的 事件，这里的事件可以是任何东西，例如网络请求、复杂计算处理、数据库操作、文件操作等等，事件执行结束后交给 Observer/Subscriber 的回调处理。
-</code></pre><hr>
-<a id="more"></a>
+    <content type="html"><![CDATA[<blockquote>
+<p>大概就是说RxJava是Java VM上一个灵活的、使用可观测序列来组成的一个异步的、基于事件的库。<br>Observables可以发出一系列的 事件，这里的事件可以是任何东西，例如网络请求、复杂计算处理、数据库操作、文件操作等等，事件执行结束后交给 Observer/Subscriber 的回调处理。</p>
+</blockquote>
+<hr>
 <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><blockquote>
 <p> View 是 被观察者（Observable/Subscriber）， OnClickListener 是 观察者（Observer），setOnClickListener() 是 Subscrib。</p>
 </blockquote>
@@ -53,9 +53,8 @@ Observables可以发出一系列的 事件，这里的事件可以是任何东�
     
     <summary type="html">
     
-      &lt;pre&gt;&lt;code&gt;大概就是说RxJava是Java VM上一个灵活的、使用可观测序列来组成的一个异步的、基于事件的库。
-Observables可以发出一系列的 事件，这里的事件可以是任何东西，例如网络请求、复杂计算处理、数据库操作、文件操作等等，事件执行结束后交给 Observer/Subscriber 的回调处理。
-&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+      &lt;blockquote&gt;
+&lt;p&gt;大概就是说RxJava是Java VM上一个灵活的、使用可观测序列来组成的一个异步的、基于事件的库。&lt;br&gt;Observables可以发出一系列的 事件，这里的事件可以是任何东西，例如网络请求、复杂计算处理、数据库操作、文件操作等等，事件执行结束后
     
     </summary>
     
