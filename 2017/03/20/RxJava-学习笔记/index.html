@@ -102,7 +102,7 @@
 基本概念
  View 是 被观察者（Observable/Subscriber）， OnCli">
 <meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/WechatIMG2.jpeg">
-<meta property="og:updated_time" content="2017-03-20T10:12:30.000Z">
+<meta property="og:updated_time" content="2017-03-20T10:15:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxJava 学习笔记">
 <meta name="twitter:description" content="大概就是说RxJava是Java VM上一个灵活的、使用可观测序列来组成的一个异步的、基于事件的库。Observables可以发出一系列的 事件，这里的事件可以是任何东西，例如网络请求、复杂计算处理、数据库操作、文件操作等等，事件执行结束后交给 Observer/Subscriber 的回调处理。
@@ -435,9 +435,12 @@
 <li>subscribeOn(): 指定 subscribe() 所发生的线程</li>
 <li>observeOn(): 指定 Subscriber 所运行在的线程</li>
 </ul>
-<table class="table table-bordered table-striped table-condensed"><br>    <tr><br>        <td>Schedulers.immediate()</td><br>        <td>直接在当前线程运行，默认的</td><br>    </tr><br>    <tr><br>        <td>Schedulers.newThread()</td><br>        <td>总是启用新线程，并在新线程执行操作</td><br>    </tr><br>    <tr><br>        <td>Schedulers.io()</td><br>        <td>I/O 操作（读写文件、读写数据库、网络信息交互等），无数量上限，可重用空闲线程</td><br>    </tr><br>    <tr><br>        <td>AndroidSchedulers.mainThread()</td><br>        <td>在 Android 主线程运行</td><br>    </tr><br></table>
-
-
+<ul>
+<li>Schedulers.immediate() : 直接在当前线程运行，默认的</li>
+<li>Schedulers.newThread() : 总是启用新线程，并在新线程执行操作</li>
+<li>Schedulers.io() : I/O 操作（读写文件、读写数据库、网络信息交互等），无数量上限，可重用空闲线程</li>
+<li>AndroidSchedulers.mainThread() : 在 Android 主线程运行</li>
+</ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**************从本地取图片在显示*******************/</span></div><div class="line">Observable.create(<span class="keyword">new</span> OnSubscribe&lt;Drawable&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> Drawable&gt; subscriber)</span> </span>&#123;</div><div class="line">        Drawable drawable = getTheme().getDrawable(drawableRes));</div><div class="line">        subscriber.onNext(drawable);</div><div class="line">        subscriber.onCompleted();</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">.subscribeOn(Schedulers.io()) <span class="comment">// 指定 subscribe() 发生在 IO 线程</span></div><div class="line">.observeOn(AndroidSchedulers.mainThread()) <span class="comment">// 指定 Subscriber 的回调发生在主线程</span></div><div class="line">.subscribe(<span class="keyword">new</span> Observer&lt;Drawable&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Drawable drawable)</span> </span>&#123;</div><div class="line">        imageView.setImageDrawable(drawable);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <hr>
 <blockquote>
