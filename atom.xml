@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yefangqingchen.com/"/>
-  <updated>2017-03-20T10:17:33.000Z</updated>
+  <updated>2017-03-22T08:12:15.000Z</updated>
   <id>http://www.yefangqingchen.com/</id>
   
   <author>
@@ -14,6 +14,99 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SwipeToLoadLayout 用法</title>
+    <link href="http://www.yefangqingchen.com/2017/03/22/SwipeToLoadLayout-%E7%94%A8%E6%B3%95/"/>
+    <id>http://www.yefangqingchen.com/2017/03/22/SwipeToLoadLayout-用法/</id>
+    <published>2017-03-22T08:10:00.000Z</published>
+    <updated>2017-03-22T08:12:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>   还在用那些被别人改成乱七八糟，问题百出、不能定制、难用难懂难适配的上下拉框架吗 ？ </p>
+<p>   虽然网上很多已经有很多写好了开源刷新控件，但是实用性太差了，自己玩玩可以，但是在真正的项目中想用，还是不行。但是现在我自己的项目中（公司项目）就是使用的SwipeToLoadLayout，用了之后觉得真的太好用了，太简单了。。。</p>
+<p>   SwipeToLoadLayout项目中已经实现了几个主流的刷新效果，Twitter style，JD style，google style，Yalantis style，demo也下载下来看了，真不错，还支持各种自定义，自定义头部和尾部，头部还分classic，above，blow，scale四种类型，还有自动刷新的效果，体验也很流畅。</p>
+<p>  支持各种View和ViewGroup（ListView，ScrollView，RecyclerView，GridView，WebView，Linearlayout，RelativeLayout，FrameLayout，ImageView，TextView等）的刷新和加载，还支持自动刷新，手动刷新，自动加载，手动加载，禁止刷新，禁止加载等操作，完全满足需求。</p>
+<p>项目地址 <a href="https://github.com/Aspsine/SwipeToLoadLayout" target="_blank" rel="external">https://github.com/Aspsine/SwipeToLoadLayout</a></p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="打开在app的build-gradle中配置"><a href="#打开在app的build-gradle中配置" class="headerlink" title="打开在app的build.gradle中配置"></a>打开在app的build.gradle中配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">	compile <span class="string">'com.github.Aspsine:SwipeToLoadLayout:1.0.4'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://omsqy2wls.bkt.clouddn.com/WechatIMG1.jpeg" alt="此处输入图片的描述"></p>
+<h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><blockquote>
+<p>SwipeToLoadLayout 使用上下拉刷新需要自己自定义上下拉效果，很简单，简单到只需要定义个TextView。</p>
+</blockquote>
+<ul>
+<li><p>1、定义上下拉刷新 , 上下拉刷可以定义为一样的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RefreshHeadView</span> <span class="keyword">extends</span> <span class="title">TextView</span> <span class="keyword">implements</span> <span class="title">SwipeRefreshTrigger</span> , <span class="title">SwipeTrigger</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RefreshHeadView</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RefreshHeadView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RefreshHeadView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">"正在拼命加载数据..."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPrepare</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMove</span><span class="params">(<span class="keyword">int</span> y, <span class="keyword">boolean</span> isComplete, <span class="keyword">boolean</span> automatic)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!isComplete) &#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (y &gt; getHeight()) &#123;</div><div class="line">                setText(<span class="string">"释放刷新"</span>);</div><div class="line"></div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (y &lt; getHeight()) &#123;</div><div class="line"></div><div class="line">                setText(<span class="string">"滑动即可刷新"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            setText(<span class="string">"刷新返回"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRelease</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">"刷新成功"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReset</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>2、布局文件中</p>
+</li>
+</ul>
+<blockquote>
+<p>注意<br>SwipeToLoadLayout 中布局包裹的View id是固定的，不能改，否则用不了<br>刷新头部View id = swipe_refresh_header;<br>刷新目标View id = swipe_target;<br>刷新底部View id = swipe_load_more_footer;</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">    android:layout_width="match_parent"</div><div class="line">    android:layout_height="match_parent"</div><div class="line">    android:orientation="vertical"&gt;</div><div class="line"></div><div class="line">    &lt;com.aspsine.swipetoloadlayout.SwipeToLoadLayout</div><div class="line">        android:id="@+id/swipeToLoadLayout"</div><div class="line">        android:layout_width="match_parent"</div><div class="line">        android:layout_height="match_parent"&gt;</div><div class="line"></div><div class="line">        &lt;rock.example.com.refresh.RefreshHeadView</div><div class="line">            android:id="@id/swipe_refresh_header"</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="100dp"</div><div class="line">            android:gravity="center" /&gt;</div><div class="line"></div><div class="line">        &lt;android.support.v7.widget.RecyclerView</div><div class="line">            android:id="@+id/swipe_target"</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="match_parent" /&gt;</div><div class="line"></div><div class="line"></div><div class="line">        &lt;rock.example.com.refresh.RefreshFooterView</div><div class="line">            android:id="@id/swipe_load_more_footer"</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="100dp"</div><div class="line">            android:gravity="center" /&gt;</div><div class="line">    &lt;/com.aspsine.swipetoloadlayout.SwipeToLoadLayout&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<h2 id="运行效果-（可以自己定义好看点的）"><a href="#运行效果-（可以自己定义好看点的）" class="headerlink" title="运行效果 （可以自己定义好看点的）"></a>运行效果 （可以自己定义好看点的）</h2><p><img src="http://omsqy2wls.bkt.clouddn.com/2017-03-22%2015.44.07.gif" alt="此处输入图片的描述"></p>
+<h2 id="SwipeToLoadLayout常用属性"><a href="#SwipeToLoadLayout常用属性" class="headerlink" title="SwipeToLoadLayout常用属性"></a>SwipeToLoadLayout常用属性</h2><p>**</p>
+<pre><code>app:refresh_enabled：设置是否可以下拉刷新 
+
+app:load_more_enabled：设置是否可以上拉加载更多 
+
+app:swipe_style：设置下拉刷新与上拉加载的样式，其值为classic，above，blew或scale 
+
+app:refresh_trigger_offset：触发下拉刷新的偏移量，默认值是下拉刷新头部的高度 
+
+app:load_more_trigger_offset：触发上拉加载更多的偏移量，默认值是上拉加载更多的高度 
+
+app:refresh_final_drag_offset：下拉刷新最大可以拖动的偏移量 
+
+app:load_more_final_drag_offset：上拉加载更多最大可以拖动的偏移量 
+
+app:release_to_refreshing_scrolling_duration：释放下拉刷新持续滚动的时间 
+
+app:release_to_loading_more_scrolling_duration：释放上拉加载更多持续滚动的时间 
+
+app:refresh_complete_delay_duration：下拉刷新完成延迟的持续时间 
+
+app:load_more_complete_delay_duration：上拉加载更多完成延迟的持续时间 
+
+app:refresh_complete_to_default_scrolling_duration：默认完成下拉刷新持续滚动时间 
+
+app:load_more_complete_to_default_scrolling_duration： 默认完成上拉加载更多持续滚动时间 
+
+app:default_to_refreshing_scrolling_duration：默认下拉刷新滚动时间 
+
+app:default_to_loading_more_scrolling_duration：默认上拉加载更多滚动时间
+</code></pre><p>**</p>
+<hr>
+<blockquote>
+<p>参考链接<br><a href="http://www.jianshu.com/p/d69ae409a52c" target="_blank" rel="external">http://www.jianshu.com/p/d69ae409a52c</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;   还在用那些被别人改成乱七八糟，问题百出、不能定制、难用难懂难适配的上下拉框架吗 ？ &lt;/p&gt;
+&lt;p&gt;   虽然网上很多已经有很多写好了开源刷新控件，但是实用性太差了，自己玩玩可以，但是在真正的项目中想用，还是不行。但是现在我自己的项目中（公司项目）就是使用的SwipeToLoadLayout，用了之后觉得真的太好用了，太简单了。。。&lt;/p&gt;
+&lt;p&gt;   SwipeToLoadLayout项目中已经实现了几个主流的刷新效果，Twitter style，JD style，google style，Yalantis style，demo也下载下来看了，真不错，还支持各种自定义，自定义头部和尾部，头部还分classic，above，blow，scale四种类型，还有自动刷新的效果，体验也很流畅。&lt;/p&gt;
+&lt;p&gt;  支持各种View和ViewGroup（ListView，ScrollView，RecyclerView，GridView，WebView，Linearlayout，RelativeLayout，FrameLayout，ImageView，TextView等）的刷新和加载，还支持自动刷新，手动刷新，自动加载，手动加载，禁止刷新，禁止加载等操作，完全满足需求。&lt;/p&gt;
+&lt;p&gt;项目地址 &lt;a href=&quot;https://github.com/Aspsine/SwipeToLoadLayout&quot;&gt;https://github.com/Aspsine/SwipeToLoadLayout&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://www.yefangqingchen.com/categories/Android/"/>
+    
+      <category term="开源控件" scheme="http://www.yefangqingchen.com/categories/Android/%E5%BC%80%E6%BA%90%E6%8E%A7%E4%BB%B6/"/>
+    
+    
+      <category term="Android" scheme="http://www.yefangqingchen.com/tags/Android/"/>
+    
+      <category term="开源控件" scheme="http://www.yefangqingchen.com/tags/%E5%BC%80%E6%BA%90%E6%8E%A7%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>RxJava 学习笔记</title>
