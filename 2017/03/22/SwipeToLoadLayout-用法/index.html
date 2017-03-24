@@ -1,0 +1,854 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,开源控件," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="还在用那些被别人改成乱七八糟，问题百出、不能定制、难用难懂难适配的上下拉框架吗 ？ 
+   虽然网上很多已经有很多写好了开源刷新控件，但是实用性太差了，自己玩玩可以，但是在真正的项目中想用，还是不行。但是现在我自己的项目中（公司项目）就是使用的SwipeToLoadLayout，用了之后觉得真的太好用了，太简单了。。。
+   SwipeToLoadLayout项目中已经实现了几个主流的刷新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SwipeToLoadLayout 用法">
+<meta property="og:url" content="http://www.yefangqingchen.com/2017/03/22/SwipeToLoadLayout-用法/index.html">
+<meta property="og:site_name" content="学到的越多，越是能发现自己有多么渺小。">
+<meta property="og:description" content="还在用那些被别人改成乱七八糟，问题百出、不能定制、难用难懂难适配的上下拉框架吗 ？ 
+   虽然网上很多已经有很多写好了开源刷新控件，但是实用性太差了，自己玩玩可以，但是在真正的项目中想用，还是不行。但是现在我自己的项目中（公司项目）就是使用的SwipeToLoadLayout，用了之后觉得真的太好用了，太简单了。。。
+   SwipeToLoadLayout项目中已经实现了几个主流的刷新">
+<meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/WechatIMG1.jpeg">
+<meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/2017-03-22%2016.15.07.gif">
+<meta property="og:updated_time" content="2017-03-22T08:16:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SwipeToLoadLayout 用法">
+<meta name="twitter:description" content="还在用那些被别人改成乱七八糟，问题百出、不能定制、难用难懂难适配的上下拉框架吗 ？ 
+   虽然网上很多已经有很多写好了开源刷新控件，但是实用性太差了，自己玩玩可以，但是在真正的项目中想用，还是不行。但是现在我自己的项目中（公司项目）就是使用的SwipeToLoadLayout，用了之后觉得真的太好用了，太简单了。。。
+   SwipeToLoadLayout项目中已经实现了几个主流的刷新">
+<meta name="twitter:image" content="http://omsqy2wls.bkt.clouddn.com/WechatIMG1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yefangqingchen.com/2017/03/22/SwipeToLoadLayout-用法/"/>
+
+
+
+
+
+  <title> SwipeToLoadLayout 用法 | 学到的越多，越是能发现自己有多么渺小。 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e5ad13b4875ab1e40375c209b851ac97";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学到的越多，越是能发现自己有多么渺小。</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.yefangqingchen.com/2017/03/22/SwipeToLoadLayout-用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yefangqingchen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学到的越多，越是能发现自己有多么渺小。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SwipeToLoadLayout 用法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T16:10:00+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/开源控件/" itemprop="url" rel="index">
+                    <span itemprop="name">开源控件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/22/SwipeToLoadLayout-用法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>   还在用那些被别人改成乱七八糟，问题百出、不能定制、难用难懂难适配的上下拉框架吗 ？ </p>
+<p>   虽然网上很多已经有很多写好了开源刷新控件，但是实用性太差了，自己玩玩可以，但是在真正的项目中想用，还是不行。但是现在我自己的项目中（公司项目）就是使用的SwipeToLoadLayout，用了之后觉得真的太好用了，太简单了。。。</p>
+<p>   SwipeToLoadLayout项目中已经实现了几个主流的刷新效果，Twitter style，JD style，google style，Yalantis style，demo也下载下来看了，真不错，还支持各种自定义，自定义头部和尾部，头部还分classic，above，blow，scale四种类型，还有自动刷新的效果，体验也很流畅。</p>
+<p>  支持各种View和ViewGroup（ListView，ScrollView，RecyclerView，GridView，WebView，Linearlayout，RelativeLayout，FrameLayout，ImageView，TextView等）的刷新和加载，还支持自动刷新，手动刷新，自动加载，手动加载，禁止刷新，禁止加载等操作，完全满足需求。</p>
+<p>项目地址 <a href="https://github.com/Aspsine/SwipeToLoadLayout" target="_blank" rel="external">https://github.com/Aspsine/SwipeToLoadLayout</a></p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="打开在app的build-gradle中配置"><a href="#打开在app的build-gradle中配置" class="headerlink" title="打开在app的build.gradle中配置"></a>打开在app的build.gradle中配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">repositories &#123;</div><div class="line">    maven &#123; url <span class="string">"https://jitpack.io"</span> &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">	compile <span class="string">'com.github.Aspsine:SwipeToLoadLayout:1.0.4'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://omsqy2wls.bkt.clouddn.com/WechatIMG1.jpeg" alt="此处输入图片的描述"></p>
+<h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><blockquote>
+<p>SwipeToLoadLayout 使用上下拉刷新需要自己自定义上下拉效果，很简单，简单到只需要定义个TextView。</p>
+</blockquote>
+<ul>
+<li><p>1、定义上下拉刷新 , 上下拉刷可以定义为一样的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RefreshHeadView</span> <span class="keyword">extends</span> <span class="title">TextView</span> <span class="keyword">implements</span> <span class="title">SwipeRefreshTrigger</span> , <span class="title">SwipeTrigger</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RefreshHeadView</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RefreshHeadView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RefreshHeadView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">"正在拼命加载数据..."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPrepare</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMove</span><span class="params">(<span class="keyword">int</span> y, <span class="keyword">boolean</span> isComplete, <span class="keyword">boolean</span> automatic)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!isComplete) &#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (y &gt; getHeight()) &#123;</div><div class="line">                setText(<span class="string">"释放刷新"</span>);</div><div class="line"></div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (y &lt; getHeight()) &#123;</div><div class="line"></div><div class="line">                setText(<span class="string">"滑动即可刷新"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            setText(<span class="string">"刷新返回"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRelease</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">"刷新成功"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReset</span><span class="params">()</span> </span>&#123;</div><div class="line">        setText(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>2、布局文件中</p>
+</li>
+</ul>
+<blockquote>
+<p>注意<br>SwipeToLoadLayout 中布局包裹的View id是固定的，不能改，否则用不了<br>刷新头部View id = swipe_refresh_header;<br>刷新目标View id = swipe_target;<br>刷新底部View id = swipe_load_more_footer;</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">    android:layout_width="match_parent"</div><div class="line">    android:layout_height="match_parent"</div><div class="line">    android:orientation="vertical"&gt;</div><div class="line"></div><div class="line">    &lt;com.aspsine.swipetoloadlayout.SwipeToLoadLayout</div><div class="line">        android:id="@+id/swipeToLoadLayout"</div><div class="line">        android:layout_width="match_parent"</div><div class="line">        android:layout_height="match_parent"&gt;</div><div class="line"></div><div class="line">        &lt;rock.example.com.refresh.RefreshHeadView</div><div class="line">            android:id="@id/swipe_refresh_header"</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="100dp"</div><div class="line">            android:gravity="center" /&gt;</div><div class="line"></div><div class="line">        &lt;android.support.v7.widget.RecyclerView</div><div class="line">            android:id="@+id/swipe_target"</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="match_parent" /&gt;</div><div class="line"></div><div class="line"></div><div class="line">        &lt;rock.example.com.refresh.RefreshFooterView</div><div class="line">            android:id="@id/swipe_load_more_footer"</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="100dp"</div><div class="line">            android:gravity="center" /&gt;</div><div class="line">    &lt;/com.aspsine.swipetoloadlayout.SwipeToLoadLayout&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<h2 id="运行效果-（可以自己定义好看点的）"><a href="#运行效果-（可以自己定义好看点的）" class="headerlink" title="运行效果 （可以自己定义好看点的）"></a>运行效果 （可以自己定义好看点的）</h2><p><img src="http://omsqy2wls.bkt.clouddn.com/2017-03-22%2016.15.07.gif" alt="此处输入图片的描述"></p>
+<h2 id="SwipeToLoadLayout常用属性"><a href="#SwipeToLoadLayout常用属性" class="headerlink" title="SwipeToLoadLayout常用属性"></a>SwipeToLoadLayout常用属性</h2><p>**</p>
+<pre><code>app:refresh_enabled：设置是否可以下拉刷新 
+
+app:load_more_enabled：设置是否可以上拉加载更多 
+
+app:swipe_style：设置下拉刷新与上拉加载的样式，其值为classic，above，blew或scale 
+
+app:refresh_trigger_offset：触发下拉刷新的偏移量，默认值是下拉刷新头部的高度 
+
+app:load_more_trigger_offset：触发上拉加载更多的偏移量，默认值是上拉加载更多的高度 
+
+app:refresh_final_drag_offset：下拉刷新最大可以拖动的偏移量 
+
+app:load_more_final_drag_offset：上拉加载更多最大可以拖动的偏移量 
+
+app:release_to_refreshing_scrolling_duration：释放下拉刷新持续滚动的时间 
+
+app:release_to_loading_more_scrolling_duration：释放上拉加载更多持续滚动的时间 
+
+app:refresh_complete_delay_duration：下拉刷新完成延迟的持续时间 
+
+app:load_more_complete_delay_duration：上拉加载更多完成延迟的持续时间 
+
+app:refresh_complete_to_default_scrolling_duration：默认完成下拉刷新持续滚动时间 
+
+app:load_more_complete_to_default_scrolling_duration： 默认完成上拉加载更多持续滚动时间 
+
+app:default_to_refreshing_scrolling_duration：默认下拉刷新滚动时间 
+
+app:default_to_loading_more_scrolling_duration：默认上拉加载更多滚动时间
+</code></pre><p>**</p>
+<hr>
+<blockquote>
+<p>参考链接<br><a href="http://www.jianshu.com/p/d69ae409a52c" target="_blank" rel="external">http://www.jianshu.com/p/d69ae409a52c</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/开源控件/" rel="tag"># 开源控件</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/20/RxJava-学习笔记/" rel="next" title="RxJava 学习笔记">
+                <i class="fa fa-chevron-left"></i> RxJava 学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="yefangqingchen" />
+          <p class="site-author-name" itemprop="name">yefangqingchen</p>
+           
+              <p class="site-description motion-element" itemprop="description">不妄自菲薄，也不骄傲自满。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yefangqingchen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2753550075/home?wvr=5&lf=reg" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              值得关注的业界大牛
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://litesuits.com/" title="litesuits" target="_blank">litesuits</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.gcssloop.com/#blog" title="gcssloop" target="_blank">gcssloop</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打开在app的build-gradle中配置"><span class="nav-number">1.1.</span> <span class="nav-text">打开在app的build.gradle中配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始使用"><span class="nav-number">2.</span> <span class="nav-text">开始使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行效果-（可以自己定义好看点的）"><span class="nav-number">3.</span> <span class="nav-text">运行效果 （可以自己定义好看点的）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SwipeToLoadLayout常用属性"><span class="nav-number">4.</span> <span class="nav-text">SwipeToLoadLayout常用属性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yefangqingchen</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "7c6830695c0d415aaf28de3a45c22d14",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
