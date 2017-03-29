@@ -99,7 +99,7 @@
    SwipeToLoadLayout项目中已经实现了几个主流的刷新">
 <meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/WechatIMG1.jpeg">
 <meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/2017-03-22%2016.15.07.gif">
-<meta property="og:updated_time" content="2017-03-22T08:16:15.000Z">
+<meta property="og:updated_time" content="2017-03-29T10:49:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SwipeToLoadLayout 用法">
 <meta name="twitter:description" content="还在用那些被别人改成乱七八糟，问题百出、不能定制、难用难懂难适配的上下拉框架吗 ？ 
@@ -429,37 +429,72 @@
 </blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">    android:layout_width="match_parent"</div><div class="line">    android:layout_height="match_parent"</div><div class="line">    android:orientation="vertical"&gt;</div><div class="line"></div><div class="line">    &lt;com.aspsine.swipetoloadlayout.SwipeToLoadLayout</div><div class="line">        android:id="@+id/swipeToLoadLayout"</div><div class="line">        android:layout_width="match_parent"</div><div class="line">        android:layout_height="match_parent"&gt;</div><div class="line"></div><div class="line">        &lt;rock.example.com.refresh.RefreshHeadView</div><div class="line">            android:id="@id/swipe_refresh_header"</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="100dp"</div><div class="line">            android:gravity="center" /&gt;</div><div class="line"></div><div class="line">        &lt;android.support.v7.widget.RecyclerView</div><div class="line">            android:id="@+id/swipe_target"</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="match_parent" /&gt;</div><div class="line"></div><div class="line"></div><div class="line">        &lt;rock.example.com.refresh.RefreshFooterView</div><div class="line">            android:id="@id/swipe_load_more_footer"</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="100dp"</div><div class="line">            android:gravity="center" /&gt;</div><div class="line">    &lt;/com.aspsine.swipetoloadlayout.SwipeToLoadLayout&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
 <h2 id="运行效果-（可以自己定义好看点的）"><a href="#运行效果-（可以自己定义好看点的）" class="headerlink" title="运行效果 （可以自己定义好看点的）"></a>运行效果 （可以自己定义好看点的）</h2><p><img src="http://omsqy2wls.bkt.clouddn.com/2017-03-22%2016.15.07.gif" alt="此处输入图片的描述"></p>
-<h2 id="SwipeToLoadLayout常用属性"><a href="#SwipeToLoadLayout常用属性" class="headerlink" title="SwipeToLoadLayout常用属性"></a>SwipeToLoadLayout常用属性</h2><p>**</p>
-<pre><code>app:refresh_enabled：设置是否可以下拉刷新 
-
-app:load_more_enabled：设置是否可以上拉加载更多 
-
-app:swipe_style：设置下拉刷新与上拉加载的样式，其值为classic，above，blew或scale 
-
-app:refresh_trigger_offset：触发下拉刷新的偏移量，默认值是下拉刷新头部的高度 
-
-app:load_more_trigger_offset：触发上拉加载更多的偏移量，默认值是上拉加载更多的高度 
-
-app:refresh_final_drag_offset：下拉刷新最大可以拖动的偏移量 
-
-app:load_more_final_drag_offset：上拉加载更多最大可以拖动的偏移量 
-
-app:release_to_refreshing_scrolling_duration：释放下拉刷新持续滚动的时间 
-
-app:release_to_loading_more_scrolling_duration：释放上拉加载更多持续滚动的时间 
-
-app:refresh_complete_delay_duration：下拉刷新完成延迟的持续时间 
-
-app:load_more_complete_delay_duration：上拉加载更多完成延迟的持续时间 
-
-app:refresh_complete_to_default_scrolling_duration：默认完成下拉刷新持续滚动时间 
-
-app:load_more_complete_to_default_scrolling_duration： 默认完成上拉加载更多持续滚动时间 
-
-app:default_to_refreshing_scrolling_duration：默认下拉刷新滚动时间 
-
-app:default_to_loading_more_scrolling_duration：默认上拉加载更多滚动时间
-</code></pre><p>**</p>
+<h2 id="SwipeToLoadLayout常用属性"><a href="#SwipeToLoadLayout常用属性" class="headerlink" title="SwipeToLoadLayout常用属性"></a>SwipeToLoadLayout常用属性</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app:refresh_enabled</td>
+<td>设置是否可以下拉刷新</td>
+</tr>
+<tr>
+<td>app:load_more_enabled</td>
+<td>设置是否可以上拉加载更多</td>
+</tr>
+<tr>
+<td>app:swipe_style</td>
+<td>设置下拉刷新与上拉加载的样式，其值为classic，above，blew或scale</td>
+</tr>
+<tr>
+<td>app:refresh_trigger_offset</td>
+<td>触发下拉刷新的偏移量，默认值是下拉刷新头部的高度</td>
+</tr>
+<tr>
+<td>app:refresh_final_drag_offset</td>
+<td>下拉刷新最大可以拖动的偏移量</td>
+</tr>
+<tr>
+<td>app:load_more_final_drag_offset</td>
+<td>上拉加载更多最大可以拖动的偏移量</td>
+</tr>
+<tr>
+<td>app:release_to_refreshing_scrolling_duration</td>
+<td>释放下拉刷新持续滚动的时间</td>
+</tr>
+<tr>
+<td>app:release_to_loading_more_scrolling_duration</td>
+<td>释放上拉加载更多持续滚动的时间</td>
+</tr>
+<tr>
+<td>app:refresh_complete_delay_duration</td>
+<td>下拉刷新完成延迟的持续时间</td>
+</tr>
+<tr>
+<td>app:load_more_complete_delay_duration</td>
+<td>上拉加载更多完成延迟的持续时间</td>
+</tr>
+<tr>
+<td>app:refresh_complete_to_default_scrolling_duration</td>
+<td>默认完成下拉刷新持续滚动时间</td>
+</tr>
+<tr>
+<td>app:load_more_complete_to_default_scrolling_duration</td>
+<td>默认完成上拉加载更多持续滚动时间</td>
+</tr>
+<tr>
+<td>app:default_to_refreshing_scrolling_duration</td>
+<td>默认下拉刷新滚动时间</td>
+</tr>
+<tr>
+<td>app:default_to_loading_more_scrolling_duration</td>
+<td>默认上拉加载更多滚动时间</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <blockquote>
 <p>参考链接<br><a href="http://www.jianshu.com/p/d69ae409a52c" target="_blank" rel="external">http://www.jianshu.com/p/d69ae409a52c</a></p>
