@@ -87,25 +87,25 @@
 
 
 
-<meta name="description" content="Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限。 
+<meta name="description" content="Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限、以及特殊权限。 
 
 
-正常权限 ：正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明其需要正常权限">
+正常权限 :正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 正常权限和危险权限">
 <meta property="og:url" content="http://www.yefangqingchen.com/2017/03/29/Android-正常权限和危险权限/index.html">
 <meta property="og:site_name" content="学到的越多，越是能发现自己有多么渺小。">
-<meta property="og:description" content="Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限。 
+<meta property="og:description" content="Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限、以及特殊权限。 
 
 
-正常权限 ：正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明其需要正常权限">
-<meta property="og:updated_time" content="2017-03-29T05:36:03.000Z">
+正常权限 :正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明">
+<meta property="og:updated_time" content="2017-03-29T05:40:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 正常权限和危险权限">
-<meta name="twitter:description" content="Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限。 
+<meta name="twitter:description" content="Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限、以及特殊权限。 
 
 
-正常权限 ：正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明其需要正常权限">
+正常权限 :正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明">
 
 
 
@@ -393,12 +393,14 @@
 
       
         <blockquote>
-<p>Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限。 </p>
+<p>Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限、以及特殊权限。 </p>
 </blockquote>
 <ol>
-<li><p>正常权限 ：正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明其需要正常权限，系统会自动向应用授予该权限。如需当前正常权限的完整列表，请参阅正常权限。</p>
+<li><p>正常权限 :正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明其需要正常权限，系统会自动向应用授予该权限。如需当前正常权限的完整列表，请参阅正常权限。</p>
 </li>
-<li><p>危险权限： 涵盖应用需要涉及用户隐私信息的数据或资源，或者可能对用户存储的数据或其他应用的操作产生影响的区域。例如，能够读取用户的联系人属于危险权限。如果应用声明其需要危险权限，则用户必须明确向应用授予该权限</p>
+<li><p>危险权限 : 涵盖应用需要涉及用户隐私信息的数据或资源，或者可能对用户存储的数据或其他应用的操作产生影响的区域。例如，能够读取用户的联系人属于危险权限。如果应用声明其需要危险权限，则用户必须明确向应用授予该权限</p>
+</li>
+<li><p>特殊权限 : 一些特别敏感的权限,例如设置悬浮窗</p>
 <a id="more"></a>
 </li>
 </ol>
