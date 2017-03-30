@@ -1,0 +1,1175 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限、以及特殊权限。 
+
+
+正常权限 :正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 正常权限和危险权限">
+<meta property="og:url" content="http://www.yefangqingchen.com/2017/03/29/Android正常权限和危险权限/index.html">
+<meta property="og:site_name" content="学到的越多，越是能发现自己有多么渺小。">
+<meta property="og:description" content="Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限、以及特殊权限。 
+
+
+正常权限 :正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明">
+<meta property="og:updated_time" content="2017-03-29T08:01:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 正常权限和危险权限">
+<meta name="twitter:description" content="Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限、以及特殊权限。 
+
+
+正常权限 :正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yefangqingchen.com/2017/03/29/Android正常权限和危险权限/"/>
+
+
+
+
+
+  <title> Android 正常权限和危险权限 | 学到的越多，越是能发现自己有多么渺小。 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e5ad13b4875ab1e40375c209b851ac97";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学到的越多，越是能发现自己有多么渺小。</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.yefangqingchen.com/2017/03/29/Android正常权限和危险权限/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yefangqingchen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学到的越多，越是能发现自己有多么渺小。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 正常权限和危险权限
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T13:31:33+08:00">
+                2017-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/29/Android正常权限和危险权限/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限、以及特殊权限。 </p>
+</blockquote>
+<ol>
+<li><p>正常权限 :正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明其需要正常权限，系统会自动向应用授予该权限。如需当前正常权限的完整列表，请参阅正常权限。</p>
+</li>
+<li><p>危险权限 : 涵盖应用需要涉及用户隐私信息的数据或资源，或者可能对用户存储的数据或其他应用的操作产生影响的区域。例如，能够读取用户的联系人属于危险权限。如果应用声明其需要危险权限，则用户必须明确向应用授予该权限</p>
+</li>
+<li><p>特殊权限 : 一些特别敏感的权限,例如设置悬浮窗</p>
+<a id="more"></a>
+</li>
+</ol>
+<h2 id="正常权限"><a href="#正常权限" class="headerlink" title="正常权限"></a>正常权限</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACCESS_LOCATION_EXTRA_COMMANDS</td>
+<td>允许程序访问额外的定位提供者指令</td>
+</tr>
+<tr>
+<td>ACCESS_NETWORK_STATE</td>
+<td>获取网络信息状态，如当前的网络连接是否有效</td>
+</tr>
+<tr>
+<td>ACCESS_NOTIFICATION_POLICY</td>
+<td>访问通知政策的应用程序的标记权限</td>
+</tr>
+<tr>
+<td>ACCESS_WIFI_STATE</td>
+<td>允许应用程序访问Wi-Fi网络状态信息</td>
+</tr>
+<tr>
+<td>BLUETOOTH</td>
+<td>允许应用程序连接配对过的蓝牙设备</td>
+</tr>
+<tr>
+<td>BLUETOOTH_ADMIN</td>
+<td>允许应用程序管理蓝牙,搜索和配对新的蓝牙设备</td>
+</tr>
+<tr>
+<td>BROADCAST_STICKY</td>
+<td>允许应用程序收到广播后快速收到下一个广播</td>
+</tr>
+<tr>
+<td>CHANGE_NETWORK_STATE</td>
+<td>允许应用程序改变网络连接状态</td>
+</tr>
+<tr>
+<td>CHANGE_WIFI_MULTICAST_STATE</td>
+<td>允许应用程序设置WiFi连接多模式</td>
+</tr>
+<tr>
+<td>CHANGE_WIFI_STATE</td>
+<td>允许应用程序改变Wi-Fi连接状态</td>
+</tr>
+<tr>
+<td>DISABLE_KEYGUARD</td>
+<td>允许应用程序禁用键盘锁</td>
+</tr>
+<tr>
+<td>EXPAND_STATUS_BAR</td>
+<td>允许应用程序扩展或收缩状态栏</td>
+</tr>
+<tr>
+<td>GET_PACKAGE_SIZE</td>
+<td>允许应用程序获取应用的文件大小</td>
+</tr>
+<tr>
+<td>INSTALL_SHORTCUT</td>
+<td>允许应用程序在Launcher中安装快捷方式</td>
+</tr>
+<tr>
+<td>INTERNET</td>
+<td>允许应用程序访问网络连接</td>
+</tr>
+<tr>
+<td>KILL_BACKGROUND_PROCESSES</td>
+<td>允许应用程序调用killBackgroundProcesses(String)方法结束后台进程</td>
+</tr>
+<tr>
+<td>MODIFY_AUDIO_SETTINGS</td>
+<td>允许应用程序修改全局音频设置</td>
+</tr>
+<tr>
+<td>NFC</td>
+<td>允许应用程序执行NFC近距离通讯操作</td>
+</tr>
+<tr>
+<td>READ_SYNC_SETTINGS</td>
+<td>允许应用程序读取同步设置，读取Google在线同步设置</td>
+</tr>
+<tr>
+<td>READ_SYNC_STATS</td>
+<td>允许应用程序读取同步状态，读取Google在线同步设置</td>
+</tr>
+<tr>
+<td>RECEIVE_BOOT_COMPLETED</td>
+<td>允许应用程序开机自动运行</td>
+</tr>
+<tr>
+<td>REORDER_TASKS</td>
+<td>允许应用程序改变Z轴排列任务</td>
+</tr>
+<tr>
+<td>REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</td>
+<td>为了使用ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS，必须保留应用程序的权限。</td>
+</tr>
+<tr>
+<td>REQUEST_INSTALL_PACKAGES</td>
+<td>允许应用程序请求安装软件包</td>
+</tr>
+<tr>
+<td>SET_ALARM</td>
+<td>允许应用程序设置闹铃提醒</td>
+</tr>
+<tr>
+<td>SET_TIME_ZONE</td>
+<td>允许应用程序设置系统时区</td>
+</tr>
+<tr>
+<td>SET_WALLPAPER</td>
+<td>允许应用程序设置桌面壁纸</td>
+</tr>
+<tr>
+<td>SET_WALLPAPER_HINTS</td>
+<td>允许应用程序设置壁纸建议</td>
+</tr>
+<tr>
+<td>TRANSMIT_IR</td>
+<td>允许使用设备的红外发射器（如果有的话）</td>
+</tr>
+<tr>
+<td>UNINSTALL_SHORTCUT</td>
+<td>系统已不再支持此权限</td>
+</tr>
+<tr>
+<td>USE_FINGERPRINT</td>
+<td>允许应用使用指纹硬件</td>
+</tr>
+<tr>
+<td>VIBRATE</td>
+<td>允许访问振动设备</td>
+</tr>
+<tr>
+<td>WAKE_LOCK</td>
+<td>允许应用程序在手机锁屏后进程仍然运行</td>
+</tr>
+<tr>
+<td>WRITE_SYNC_SETTINGS</td>
+<td>允许程序Google在线同步设置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="正常权限使用方法"><a href="#正常权限使用方法" class="headerlink" title="正常权限使用方法"></a>正常权限使用方法</h3><blockquote>
+<p>AndroidManifest.xml 中 使用 uses-permission 标签声明</p>
+</blockquote>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+</code></pre><hr>
+<h2 id="危险权限"><a href="#危险权限" class="headerlink" title="危险权限"></a>危险权限</h2><hr>
+<table>
+<thead>
+<tr>
+<th>CALENDAR</th>
+<th>日历相关权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>READ_CALENDAR</td>
+<td>允许应用程序读取用户日历数据</td>
+</tr>
+<tr>
+<td>WRITE_CALENDAR</td>
+<td>允许应用程序写入用户日程，但不可读取</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>CAMERA</th>
+<th>相机相关权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>READ_CALENDAR</td>
+<td>允许应用程序访问摄像头</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>CONTACTS</th>
+<th>联系人相关权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>READ_CONTACTS</td>
+<td>允许应用程序读取联系人通讯录信息</td>
+</tr>
+<tr>
+<td>WRITE_CONTACTS</td>
+<td>允许应用程序写入联系人，但不可读取</td>
+</tr>
+<tr>
+<td>GET_ACCOUNTS</td>
+<td>允许应用程序访问GMail账户列表</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>LOCATION</th>
+<th>定位相关权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACCESS_FINE_LOCATION</td>
+<td>允许应用程序通过GPS获取精确的位置信息</td>
+</tr>
+<tr>
+<td>ACCESS_COARSE_LOCATION</td>
+<td>允许应用程序通过WiFi或移动基站获取粗略的位置信息</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>MICROPHONE</th>
+<th>麦克风相关权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RECORD_AUDIO</td>
+<td>允许应用程序录制音频</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>PHONE</th>
+<th>电话相关权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>READ_PHONE_STATE</td>
+<td>允许应用程序读取电话状态</td>
+</tr>
+<tr>
+<td>CALL_PHONE</td>
+<td>允许应用程序拨打电话,从非系统拨号器里初始化一个电话拨号</td>
+</tr>
+<tr>
+<td>READ_CALL_LOG</td>
+<td>允许应用程序读取通话记录</td>
+</tr>
+<tr>
+<td>WRITE_CALL_LOG</td>
+<td>允许应用程序写入通话记录</td>
+</tr>
+<tr>
+<td>ADD_VOICEMAIL</td>
+<td>允许应用程序使用语音邮件</td>
+</tr>
+<tr>
+<td>USE_SIP</td>
+<td>允许应用程序使用SIP视频服务</td>
+</tr>
+<tr>
+<td>PROCESS_OUTGOING_CALLS</td>
+<td>允许应用程序监视、修改外拨电话</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>SENSORS</th>
+<th>传感器相关权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BODY_SENSORS</td>
+<td>允许应用程序访问用户用来衡量身体内发生的情况的传感器的数据，例如心率</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>SMS</th>
+<th>短信相关权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEND_SMS</td>
+<td>允许应用程序发送短信</td>
+</tr>
+<tr>
+<td>RECEIVE_SMS</td>
+<td>允许应用程序接收短信</td>
+</tr>
+<tr>
+<td>READ_SMS</td>
+<td>允许应用程序读取短信内容</td>
+</tr>
+<tr>
+<td>RECEIVE_WAP_PUSH</td>
+<td>允许应用程序接收WAP PUSH信息</td>
+</tr>
+<tr>
+<td>RECEIVE_MMS</td>
+<td>允许应用程序接收彩信</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>STORAGE</th>
+<th>存储相关权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>READ_EXTERNAL_STORAGE</td>
+<td>允许应用程序读取扩展存储器</td>
+</tr>
+<tr>
+<td>WRITE_EXTERNAL_STORAGE</td>
+<td>允许应用程序写入外部存储，如SD卡上写文件</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="危险权限使用方法"><a href="#危险权限使用方法" class="headerlink" title="危险权限使用方法"></a>危险权限使用方法</h3><pre><code>比如现在项目中有一个上传相片的功能，如果你的（API 级别是 23），那么直接在AndroidManifest.xml 中使用 uses-permission声明READ_EXTERNAL_STORAGE权限是没有用的，会报错：
+
+java.lang.SecurityException: Permission Denial: reading com.android.providers.media.MediaProvider uri content://media/external/images/media from pid=5244, uid=10144 requires android.permission.READ_EXTERNAL_STORAGE, or grantUriPermission()
+
+所以要动态请求此权限
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> READ_EXTERNAL_STORAGE = <span class="number">0x01</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CAMERA = <span class="number">0x02</span>;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 针对6.0动态请求权限问题</div><div class="line">     * 判断是否允许此权限</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> permissions</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@TargetApi</span>(Build.VERSION_CODES.M)</div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">hasPermission</span><span class="params">(String... permissions)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (String permission : permissions) &#123;</div><div class="line">            <span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, permission) != PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                <span class="keyword">if</span>(shouldShowRequestPermissionRationale(permission))&#123;</div><div class="line">                    showToast(<span class="string">"请允许次权限"</span>);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 动态请求权限</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> code</div><div class="line">     * <span class="doctag">@param</span> permissions</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">requestPermission</span><span class="params">(<span class="keyword">int</span> code, String... permissions)</span> </span>&#123;</div><div class="line">        ActivityCompat.requestPermissions(<span class="keyword">this</span>, permissions, code);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 处理权限请求响应</div><div class="line">     * <span class="doctag">@param</span> requestCode</div><div class="line">     * <span class="doctag">@param</span> permissions</div><div class="line">     * <span class="doctag">@param</span> grantResults</div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, @NonNull String[] permissions, @NonNull <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (requestCode) &#123;</div><div class="line">            <span class="keyword">case</span> READ_EXTERNAL_STORAGE:</div><div class="line">                <span class="keyword">if</span> (grantResults[<span class="number">0</span>] == PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                    readLocalMedia();</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    showToast(<span class="string">"读取内存卡权限已被拒绝"</span>);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> CAMERA:</div><div class="line">                <span class="keyword">if</span> (grantResults[<span class="number">0</span>] == PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                    startCamera();</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    showToast(<span class="string">"拍照权限已被拒绝"</span>);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 读取相册信息</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">readLocalMedia</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 启动相机</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">startCamera</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String msg)</span> </span>&#123;</div><div class="line">        Toast.makeText(BaseActivity.<span class="keyword">this</span>, msg, Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>调用以上代码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 第一次获取过相册列表</span></div><div class="line"><span class="comment">// 先判断手机是否有读取权限，主要是针对6.0已上系统</span></div><div class="line"><span class="keyword">if</span> (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) &#123;</div><div class="line">       readLocalMedia();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        requestPermission(READ_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意:即使支持了运行时权限，也要在Manifest声明，因为市场应用会根据这个信息和硬件设备进行匹配，决定你的应用是否在该设备上显示。</strong></p>
+</blockquote>
+<h2 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SYSTEM_ALERT_WINDOW</td>
+<td>设置悬浮窗</td>
+</tr>
+<tr>
+<td>WRITE_SETTINGS</td>
+<td>修改系统设置</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>特殊权限的授权，做法是使用startActivityForResult启动授权界面来完成。</p>
+</blockquote>
+<h3 id="获取-SYSTEM-ALERT-WINDOW-权限"><a href="#获取-SYSTEM-ALERT-WINDOW-权限" class="headerlink" title="获取 SYSTEM_ALERT_WINDOW 权限"></a>获取 SYSTEM_ALERT_WINDOW 权限</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> REQUEST_CODE = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">private</span>  <span class="keyword">void</span> <span class="title">requestAlertWindowPermission</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/** 使用Action Settings.ACTION_MANAGE_OVERLAY_PERMISSION启动隐式Intent */</span></div><div class="line">    Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);</div><div class="line"></div><div class="line">    <span class="comment">/** 使用"package:" + getPackageName()携带App的包名信息 */</span></div><div class="line">    intent.setData(Uri.parse(<span class="string">"package:"</span> + getPackageName()));</div><div class="line"></div><div class="line">    startActivityForResult(intent, REQUEST_CODE);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">    <span class="keyword">if</span> (requestCode == REQUEST_CODE) &#123;</div><div class="line">        </div><div class="line">        <span class="comment">/** 使用Settings.canDrawOverlays方法判断授权结果*/</span></div><div class="line">        <span class="keyword">if</span> (Settings.canDrawOverlays(<span class="keyword">this</span>)) &#123;</div><div class="line">          Log.i(LOGTAG, <span class="string">"onActivityResult granted"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="获取-WRITE-SETTINGS-权限"><a href="#获取-WRITE-SETTINGS-权限" class="headerlink" title="获取 WRITE_SETTINGS 权限"></a>获取 WRITE_SETTINGS 权限</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> REQUEST_CODE_WRITE_SETTINGS = <span class="number">2</span>;</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">requestWriteSettings</span><span class="params">()</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="comment">/** 使用Action Settings.ACTION_MANAGE_WRITE_SETTINGS 启动隐式Intent */</span></div><div class="line">    Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);</div><div class="line"></div><div class="line">    <span class="comment">/** 使用"package:" + getPackageName()携带App的包名信息 */</span></div><div class="line">    intent.setData(Uri.parse(<span class="string">"package:"</span> + getPackageName()));</div><div class="line"></div><div class="line"></div><div class="line">    startActivityForResult(intent, REQUEST_CODE_WRITE_SETTINGS );</div><div class="line">&#125;</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">    <span class="keyword">if</span> (requestCode == REQUEST_CODE_WRITE_SETTINGS) &#123;</div><div class="line"></div><div class="line">        <span class="comment">/** 使用Settings.System.canWrite方法检测授权结果 */</span></div><div class="line">        <span class="keyword">if</span> (Settings.System.canWrite(<span class="keyword">this</span>)) &#123;</div><div class="line">            Log.i(LOGTAG, <span class="string">"onActivityResult write settings granted"</span> );</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
+<p><a href="https://developer.android.com/training/permissions/requesting.html" target="_blank" rel="external">在运行时请求权限-官网</a><br><a href="https://developer.android.com/guide/topics/permissions/normal-permissions.html?hl=zh-cn" target="_blank" rel="external">正常权限表-官网</a><br><a href="https://developer.android.com/guide/topics/security/permissions.html?hl=zh-cn" target="_blank" rel="external">危险权限表-官网</a><br><a href="http://droidyue.com/blog/2016/01/17/understanding-marshmallow-runtime-permission/" target="_blank" rel="external">聊一聊Android 6.0的运行时权限</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/22/SwipeToLoadLayout用法/" rel="next" title="SwipeToLoadLayout 用法">
+                <i class="fa fa-chevron-left"></i> SwipeToLoadLayout 用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/30/Mac安装React_Native_for_Android 环境/" rel="prev" title="Mac安装React Native for Android 环境">
+                Mac安装React Native for Android 环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="yefangqingchen" />
+          <p class="site-author-name" itemprop="name">yefangqingchen</p>
+           
+              <p class="site-description motion-element" itemprop="description">不妄自菲薄，也不骄傲自满。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yefangqingchen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2753550075/home?wvr=5&lf=reg" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              值得关注的业界大牛
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://litesuits.com/" title="litesuits" target="_blank">litesuits</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.gcssloop.com/#blog" title="gcssloop" target="_blank">gcssloop</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正常权限"><span class="nav-number">1.</span> <span class="nav-text">正常权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正常权限使用方法"><span class="nav-number">1.1.</span> <span class="nav-text">正常权限使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#危险权限"><span class="nav-number">2.</span> <span class="nav-text">危险权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#危险权限使用方法"><span class="nav-number">2.1.</span> <span class="nav-text">危险权限使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊权限"><span class="nav-number">3.</span> <span class="nav-text">特殊权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-SYSTEM-ALERT-WINDOW-权限"><span class="nav-number">3.1.</span> <span class="nav-text">获取 SYSTEM_ALERT_WINDOW 权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-WRITE-SETTINGS-权限"><span class="nav-number">3.2.</span> <span class="nav-text">获取 WRITE_SETTINGS 权限</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yefangqingchen</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "7c6830695c0d415aaf28de3a45c22d14",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
