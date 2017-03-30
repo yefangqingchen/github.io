@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yefangqingchen.com/"/>
-  <updated>2017-03-29T08:01:34.000Z</updated>
+  <updated>2017-03-30T08:28:52.000Z</updated>
   <id>http://www.yefangqingchen.com/</id>
   
   <author>
@@ -14,6 +14,160 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac安装React Native for Android 环境</title>
+    <link href="http://www.yefangqingchen.com/2017/03/30/Mac-React-Native-Android/"/>
+    <id>http://www.yefangqingchen.com/2017/03/30/Mac-React-Native-Android/</id>
+    <published>2017-03-30T08:27:21.000Z</published>
+    <updated>2017-03-30T08:28:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于Mac安装React Native环境来说很简单，网上的文章写的有点麻烦，有些东西都不知道是干什么的。自己记录一下安装过程。</p>
+<a id="more"></a>
+<h2 id="安装-Homebrew"><a href="#安装-Homebrew" class="headerlink" title="安装 Homebrew"></a>安装 Homebrew</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /usr/bin/ruby -e <span class="string">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</span></div></pre></td></tr></table></figure>
+<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><pre><code class="java">$ brew install node
+
+<span class="comment">//安装完node后建议设置npm镜像以加速后面的过程（或使用科学上网工具）</span>
+
+npm config set registry https:<span class="comment">//registry.npm.taobao.org --global</span>
+npm config set disturl https:<span class="comment">//npm.taobao.org/dist --global</span>
+</code></pre>
+<h2 id="安装watchman"><a href="#安装watchman" class="headerlink" title="安装watchman"></a>安装watchman</h2><pre><code class="java">$ brew install watchman
+
+//如果出现以下错误：
+You must `brew link pcre&#39; before watchman can be installed
+
+//根据提示执行
+$ brew link pcre
+
+//如果有一下错误：（是因为没有权限）
+Linking /usr/local/Cellar/pcre/8.40... 
+Error: Could not symlink lib/pkgconfig/libpcre.pc
+/usr/local/lib/pkgconfig is not writable.
+
+//继续执行：(username 替换成你的mac用户名)
+$ sudo chown username /usr/local/lib/pkgconfig
+
+//然后在执行，就安装成功了
+$ brew install watchman
+</code></pre>
+<h2 id="安装React-Native"><a href="#安装React-Native" class="headerlink" title="安装React Native"></a>安装React Native</h2><pre><code class="java">$ npm install -g react-<span class="keyword">native</span>-cli
+</code></pre>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><pre><code class="java"><span class="comment">//前提已经装好了android studio。</span>
+
+$ open ~/.bash_profile
+
+<span class="comment">//加入到.bash_profile文件中</span>
+export ANDROID_HOME=/Users/Rock/Library/Android/sdk/
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+$ source ~/.bash_profile
+</code></pre>
+<h2 id="创建React-Native项目"><a href="#创建React-Native项目" class="headerlink" title="创建React Native项目"></a>创建React Native项目</h2><pre><code class="java"><span class="comment">//在你的工作空间下执行，目录随意比如我的是（workspace/react_native）</span>
+
+react-<span class="keyword">native</span> init ReactNativeDemo
+
+第一次稍等片刻就会出现以下结果：
+</code></pre>
+<h3 id="执行react-native-init-ReactNativeDemo-结果"><a href="#执行react-native-init-ReactNativeDemo-结果" class="headerlink" title="执行react-native init ReactNativeDemo 结果"></a>执行react-native init ReactNativeDemo 结果</h3><pre><code class="java">Rock:react_native Rock$ react-<span class="keyword">native</span> init ReactNativeDemo
+This will walk you through creating a <span class="keyword">new</span> React Native project in /Users/Rock/workspace/react_native/ReactNativeDemo
+Using yarn v0.21.3
+Installing react-<span class="keyword">native</span>...
+yarn add v0.21.3
+info No lockfile found.
+[<span class="number">1</span>/<span class="number">4</span>] 🔍  Resolving packages...
+warning react-<span class="keyword">native</span> &gt; xcode &gt; node-uuid@<span class="number">1.4</span>.7: Use uuid <span class="keyword">module</span> instead
+[<span class="number">2</span>/<span class="number">4</span>] 🚚  Fetching packages...
+[<span class="number">3</span>/<span class="number">4</span>] 🔗  Linking dependencies...
+warning <span class="string">"react-native@0.42.3"</span> has unmet peer dependency <span class="string">"react@~15.4.1"</span>.
+[<span class="number">4</span>/<span class="number">4</span>] 📃  Building fresh packages...
+success Saved lockfile.
+success Saved <span class="number">430</span> <span class="keyword">new</span> dependencies.
+
+================================================================
+                     中间省略N行。。。。。。
+================================================================
+
+✨  Done in <span class="number">12.53</span>s.
+To run your app on iOS:
+   cd /Users/Rock/workspace/react_native/ReactNativeDemo
+   react-<span class="keyword">native</span> run-ios
+   - or -
+   Open ios/ReactNativeDemo.xcodeproj in Xcode
+   Hit the Run button
+To run your app on Android:
+   cd /Users/Rock/workspace/react_native/<span class="function">ReactNativeDemo
+   Have an Android emulator <span class="title">running</span> <span class="params">(quickest way to get started)</span>, or a device connected
+   react-<span class="keyword">native</span> run-android
+Rock:react_native Rock$</span>
+</code></pre>
+<h3 id="进入ReactNativeDemo目录"><a href="#进入ReactNativeDemo目录" class="headerlink" title="进入ReactNativeDemo目录"></a>进入ReactNativeDemo目录</h3><pre><code class="java">===================================
+注意看一下结果第二行，然后进入到此目录
+
+This will walk you through creating a <span class="keyword">new</span> React Native project in /Users/Rock/workspace/react_native/ReactNativeDemo
+
+===================================
+<span class="comment">//执行一下命令</span>
+$ cd ReactNativeDemo
+$ ls -la
+===================================
+
+<span class="comment">//结果</span>
+Rock:react_native Rock$ cd ReactNativeDemo
+Rock:ReactNativeDemo Rock$ ls -la
+total <span class="number">360</span>
+drwxr-xr-x   <span class="number">17</span> Rock  staff     <span class="number">578</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> .
+drwxr-xr-x    <span class="number">4</span> Rock  staff     <span class="number">136</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">53</span> ..
+-rw-r--r--    <span class="number">1</span> Rock  staff      <span class="number">31</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> .babelrc
+-rw-r--r--    <span class="number">1</span> Rock  staff     <span class="number">114</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> .buckconfig
+-rw-r--r--    <span class="number">1</span> Rock  staff    <span class="number">1371</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> .flowconfig
+-rw-r--r--    <span class="number">1</span> Rock  staff      <span class="number">16</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> .gitattributes
+-rw-r--r--    <span class="number">1</span> Rock  staff     <span class="number">774</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> .gitignore
+-rw-r--r--    <span class="number">1</span> Rock  staff       <span class="number">2</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> .watchmanconfig
+drwxr-xr-x    <span class="number">4</span> Rock  staff     <span class="number">136</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> __tests__
+drwxr-xr-x   <span class="number">10</span> Rock  staff     <span class="number">340</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> android
+-rw-r--r--    <span class="number">1</span> Rock  staff      <span class="number">67</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> app.json
+-rw-r--r--    <span class="number">1</span> Rock  staff    <span class="number">1121</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> index.android.js
+-rw-r--r--    <span class="number">1</span> Rock  staff    <span class="number">1087</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> index.ios.js
+drwxr-xr-x    <span class="number">7</span> Rock  staff     <span class="number">238</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> ios
+drwxr-xr-x  <span class="number">554</span> Rock  staff   <span class="number">18836</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> node_modules
+-rw-r--r--    <span class="number">1</span> Rock  staff     <span class="number">433</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> <span class="keyword">package</span>.json
+-rw-r--r--    <span class="number">1</span> Rock  staff  <span class="number">142776</span>  <span class="number">3</span> <span class="number">30</span> <span class="number">13</span>:<span class="number">54</span> yarn.lock
+Rock:ReactNativeDemo Rock$
+</code></pre>
+<h3 id="ReactNativeDemo目录下文件说明"><a href="#ReactNativeDemo目录下文件说明" class="headerlink" title="ReactNativeDemo目录下文件说明"></a>ReactNativeDemo目录下文件说明</h3><blockquote>
+<ol>
+<li>React Native使用npm管理package，因此有node_modules目录。</li>
+<li>android 和ios目录包含了典型的Android/iOS 项目，可以分别使用Android Studio/Xcode打开或者运行。</li>
+<li>index.android.js 和 index.ios.js 文件包含了React Native源码的主入口。</li>
+</ol>
+</blockquote>
+<h3 id="运行-ReactNativeDemo"><a href="#运行-ReactNativeDemo" class="headerlink" title="运行 ReactNativeDemo"></a>运行 ReactNativeDemo</h3><pre><code class="java">
+$ react-<span class="keyword">native</span> run-android
+
+注意：
+    <span class="number">1</span>、react-<span class="keyword">native</span> run-android一定要在ReactNativeDemo目录下
+    <span class="number">2</span>、要提前打开模拟器
+</code></pre>
+<p><img src="http://omsqy2wls.bkt.clouddn.com/2017-03-30%2015.36.54.gif" alt="此处输入图片的描述"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于Mac安装React Native环境来说很简单，网上的文章写的有点麻烦，有些东西都不知道是干什么的。自己记录一下安装过程。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://www.yefangqingchen.com/categories/Android/"/>
+    
+      <category term="React Native" scheme="http://www.yefangqingchen.com/categories/Android/React-Native/"/>
+    
+    
+      <category term="Android" scheme="http://www.yefangqingchen.com/tags/Android/"/>
+    
+      <category term="React Native" scheme="http://www.yefangqingchen.com/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>Android 正常权限和危险权限</title>
