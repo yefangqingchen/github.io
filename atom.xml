@@ -17,8 +17,8 @@
   
   <entry>
     <title>Mac安装React Native for Android 环境</title>
-    <link href="http://www.yefangqingchen.com/2017/03/30/Mac%E5%AE%89%E8%A3%85React%20Native%20for%20Android%20%E7%8E%AF%E5%A2%83/"/>
-    <id>http://www.yefangqingchen.com/2017/03/30/Mac安装React Native for Android 环境/</id>
+    <link href="http://www.yefangqingchen.com/2017/03/30/Mac%E5%AE%89%E8%A3%85React_Native_for_Android%20%E7%8E%AF%E5%A2%83/"/>
+    <id>http://www.yefangqingchen.com/2017/03/30/Mac安装React_Native_for_Android 环境/</id>
     <published>2017-03-30T08:27:21.000Z</published>
     <updated>2017-03-30T08:28:52.000Z</updated>
     
@@ -592,8 +592,8 @@ java.lang.SecurityException: Permission Denial: reading com.android.providers.me
   
   <entry>
     <title>SwipeToLoadLayout 用法</title>
-    <link href="http://www.yefangqingchen.com/2017/03/22/SwipeToLoadLayout%20%E7%94%A8%E6%B3%95/"/>
-    <id>http://www.yefangqingchen.com/2017/03/22/SwipeToLoadLayout 用法/</id>
+    <link href="http://www.yefangqingchen.com/2017/03/22/SwipeToLoadLayout%E7%94%A8%E6%B3%95/"/>
+    <id>http://www.yefangqingchen.com/2017/03/22/SwipeToLoadLayout用法/</id>
     <published>2017-03-22T08:10:00.000Z</published>
     <updated>2017-03-29T10:49:42.000Z</updated>
     
@@ -720,8 +720,8 @@ java.lang.SecurityException: Permission Denial: reading com.android.providers.me
   
   <entry>
     <title>RxJava 学习笔记</title>
-    <link href="http://www.yefangqingchen.com/2017/03/20/RxJava%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://www.yefangqingchen.com/2017/03/20/RxJava 学习笔记/</id>
+    <link href="http://www.yefangqingchen.com/2017/03/20/RxJava%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://www.yefangqingchen.com/2017/03/20/RxJava学习笔记/</id>
     <published>2017-03-20T09:58:05.000Z</published>
     <updated>2017-03-20T10:17:33.000Z</updated>
     
@@ -919,9 +919,9 @@ java.lang.SecurityException: Permission Denial: reading com.android.providers.me
       <category term="其他" scheme="http://www.yefangqingchen.com/categories/%E5%BF%83%E6%83%85%E6%9D%82%E8%AE%B0/%E5%85%B6%E4%BB%96/"/>
     
     
-      <category term="心情杂记" scheme="http://www.yefangqingchen.com/tags/%E5%BF%83%E6%83%85%E6%9D%82%E8%AE%B0/"/>
-    
       <category term="其他" scheme="http://www.yefangqingchen.com/tags/%E5%85%B6%E4%BB%96/"/>
+    
+      <category term="心情杂记" scheme="http://www.yefangqingchen.com/tags/%E5%BF%83%E6%83%85%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   
