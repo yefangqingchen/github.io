@@ -87,41 +87,38 @@
 
 
 
-<meta name="description" content="一款优秀高质量的APP肯定做过很好的性能优化，在网上和Android官网上看了一些关于性能的文章，感觉杂七杂八的，或者直接就是翻译的文章，所以觉得自己总结一下。
-Android app的性能优化一般分为一下几种
+<meta name="description" content="一款优秀高质量的APP肯定做过很好的性能优化，在网上和Android官网上看了一些关于性能的文章，感觉杂七杂八的，或者直接就是翻译的文章，所以觉得自己总结一下。Android app的性能优化一般分为一下几种
 
 渲染
 内存
 电量
 运算
 
-UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠">
+UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android性能优化-布局优化总结">
 <meta property="og:url" content="http://www.yefangqingchen.com/2017/03/31/Android性能优化-布局优化总结/index.html">
 <meta property="og:site_name" content="学到的越多，越是能发现自己有多么渺小。">
-<meta property="og:description" content="一款优秀高质量的APP肯定做过很好的性能优化，在网上和Android官网上看了一些关于性能的文章，感觉杂七杂八的，或者直接就是翻译的文章，所以觉得自己总结一下。
-Android app的性能优化一般分为一下几种
+<meta property="og:description" content="一款优秀高质量的APP肯定做过很好的性能优化，在网上和Android官网上看了一些关于性能的文章，感觉杂七杂八的，或者直接就是翻译的文章，所以觉得自己总结一下。Android app的性能优化一般分为一下几种
 
 渲染
 内存
 电量
 运算
 
-UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠">
+UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的">
 <meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/view1.jpeg">
-<meta property="og:updated_time" content="2017-03-31T10:24:56.000Z">
+<meta property="og:updated_time" content="2017-03-31T10:27:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android性能优化-布局优化总结">
-<meta name="twitter:description" content="一款优秀高质量的APP肯定做过很好的性能优化，在网上和Android官网上看了一些关于性能的文章，感觉杂七杂八的，或者直接就是翻译的文章，所以觉得自己总结一下。
-Android app的性能优化一般分为一下几种
+<meta name="twitter:description" content="一款优秀高质量的APP肯定做过很好的性能优化，在网上和Android官网上看了一些关于性能的文章，感觉杂七杂八的，或者直接就是翻译的文章，所以觉得自己总结一下。Android app的性能优化一般分为一下几种
 
 渲染
 内存
 电量
 运算
 
-UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠">
+UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的">
 <meta name="twitter:image" content="http://omsqy2wls.bkt.clouddn.com/view1.jpeg">
 
 
@@ -421,20 +418,17 @@ UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产
 
       
         <hr>
-<pre><code>一款优秀高质量的APP肯定做过很好的性能优化，在网上和Android官网上看了一些关于性能的文章，感觉杂七杂八的，或者直接就是翻译的文章，所以觉得自己总结一下。
-Android app的性能优化一般分为一下几种
-</code></pre><ul>
+<p>一款优秀高质量的APP肯定做过很好的性能优化，在网上和Android官网上看了一些关于性能的文章，感觉杂七杂八的，或者直接就是翻译的文章，所以觉得自己总结一下。<br>Android app的性能优化一般分为一下几种</p>
+<ul>
 <li>渲染</li>
 <li>内存</li>
 <li>电量</li>
 <li>运算</li>
 </ul>
-<h1 id="UI渲染"><a href="#UI渲染" class="headerlink" title="UI渲染"></a>UI渲染</h1><pre><code>现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的布局控件（包括第三方复杂控件）多了之后，Activity的onCreate流程，特别是UI的布局与渲染操作，布局过于复杂很可能导致严重的启动性能问题。我们有时候用一些APP是不是经常遇见一些界面启动很慢，白屏等 ？
-
-为什么界面布局多了之后，会造成渲染慢 、卡顿、白屏等 ？
-
-在[胡凯]的博客中看到过。正常来说Android系统每隔16ms发出Vsync信号，触发对UI进行渲染，如果每次渲染都成功，这样就能够达到流畅的画面所需要的60fps，为了能够实现60fps，这意味着程序的大多数操作都必须在16ms内完成。但是当有个操作需要比更多的时间来渲染时，系统在得到Vsync信号后就无法正常在16ms内完成渲染，所以就会出现丢帧现象，从而觉得卡顿。最具有代表性的就是ListView了。
-</code></pre> <a id="more"></a>
+<h1 id="UI渲染"><a href="#UI渲染" class="headerlink" title="UI渲染"></a>UI渲染</h1><p>现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的布局控件（包括第三方复杂控件）多了之后，Activity的onCreate流程，特别是UI的布局与渲染操作，布局过于复杂很可能导致严重的启动性能问题。我们有时候用一些APP是不是经常遇见一些界面启动很慢，白屏等 ？</p>
+<p>为什么界面布局多了之后，会造成渲染慢 、卡顿、白屏等 ？</p>
+<p>在[胡凯]的博客中看到过。正常来说Android系统每隔16ms发出Vsync信号，触发对UI进行渲染，如果每次渲染都成功，这样就能够达到流畅的画面所需要的60fps，为了能够实现60fps，这意味着程序的大多数操作都必须在16ms内完成。但是当有个操作需要比更多的时间来渲染时，系统在得到Vsync信号后就无法正常在16ms内完成渲染，所以就会出现丢帧现象，从而觉得卡顿。最具有代表性的就是ListView了。</p>
+ <a id="more"></a>
 <h2 id="布局优化"><a href="#布局优化" class="headerlink" title="布局优化"></a>布局优化</h2><blockquote>
 <p>1、删除无用的布局<br>2、有选择性的使用ViewGroup<br>3、重用布局<br>4、减少布局层次</p>
 </blockquote>
