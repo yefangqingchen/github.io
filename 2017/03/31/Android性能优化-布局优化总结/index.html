@@ -108,7 +108,7 @@ UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产
 
 UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的">
 <meta property="og:image" content="http://omsqy2wls.bkt.clouddn.com/view1.jpeg">
-<meta property="og:updated_time" content="2017-03-31T10:29:59.000Z">
+<meta property="og:updated_time" content="2017-03-31T10:33:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android性能优化-布局优化总结">
 <meta name="twitter:description" content="一款优秀高质量的APP肯定做过很好的性能优化，在网上和Android官网上看了一些关于性能的文章，感觉杂七杂八的，或者直接就是翻译的文章，所以觉得自己总结一下。Android app的性能优化一般分为一下几种
@@ -432,8 +432,8 @@ UI渲染现在的APP有很多很炫的效果，没办法这是产品要求，产
 <h2 id="布局优化"><a href="#布局优化" class="headerlink" title="布局优化"></a>布局优化</h2><blockquote>
 <p>1、删除无用的布局<br>2、有选择性的使用ViewGroup<br>3、重用布局<br>4、减少布局层次</p>
 </blockquote>
-<h3 id="删除无用的控件"><a href="#删除无用的控件" class="headerlink" title="删除无用的控件"></a>删除无用的控件</h3><pre><code>不解释，不用就删了吧。
-</code></pre><h3 id="有选择性的使用ViewGroup"><a href="#有选择性的使用ViewGroup" class="headerlink" title="有选择性的使用ViewGroup"></a>有选择性的使用ViewGroup</h3><p>RelativeLayout和LinearLayout.都可以的话那么就采用LinearLayout. 因为RelativeLayout的功能比较复杂,它的布局过程需要花费更多的CPU时间. FrameLayout和LinearLayout都是一种简单高效的ViewGroup. </p>
+<h3 id="删除无用的控件"><a href="#删除无用的控件" class="headerlink" title="删除无用的控件"></a>删除无用的控件</h3><p>不解释，不用就删了吧。</p>
+<h3 id="有选择性的使用ViewGroup"><a href="#有选择性的使用ViewGroup" class="headerlink" title="有选择性的使用ViewGroup"></a>有选择性的使用ViewGroup</h3><p>RelativeLayout和LinearLayout.都可以的话那么就采用LinearLayout. 因为RelativeLayout的功能比较复杂,它的布局过程需要花费更多的CPU时间. FrameLayout和LinearLayout都是一种简单高效的ViewGroup. </p>
 <p>简单的举个例子，比如要实现以下效果:<br><img src="http://omsqy2wls.bkt.clouddn.com/view1.jpeg" alt="此处输入图片的描述"></p>
 <p>1、使用LinearLayout实现</p>
 <pre><code class="xml"><span class="tag">&lt;<span class="name">LinearLayout</span> 
