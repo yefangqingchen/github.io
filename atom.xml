@@ -43,19 +43,12 @@
     <link href="http://www.yefangqingchen.com/2017/04/06/Android-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/"/>
     <id>http://www.yefangqingchen.com/2017/04/06/Android-内存优化/</id>
     <published>2017-04-06T07:53:09.000Z</published>
-    <updated>2017-04-06T07:53:58.000Z</updated>
+    <updated>2017-04-06T08:26:46.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><pre><code>Android系统中内存有两个概念，一个是物理内存和进程内存。
-
-物理内存即移动设备上的RAM，当启动一个Android程序时，会启动一个Dalvik VM进程，系统会给它分配固定的内存空间（16M,32M不定），这块内存空间会映射到RAM上某个区域。然后这个Android程序就会运行在这块空间上。Java里会将这块空间分成Stack栈内存和Heap堆内存。stack（栈区）里存放对象的引用，heap(堆区)里存放实际对象数据。
-
-在程序运行中会创建对象，如果未合理管理内存，比如不及时回收无效空间就会造成内存泄露，严重的话可能导致使用内存超过系统分配内存，即内存溢出OOM，导致程序卡顿甚至直接退出。
-
-其实很多方面都会导致内存紧张：
-1、图片问题
-2、资源释放问题
-4、代码层次的优化
-</code></pre><a id="more"></a>
+    <content type="html"><![CDATA[<p>Android系统中内存有两个概念，一个是物理内存和进程内存。</p>
+<p>物理内存即移动设备上的RAM，当启动一个Android程序时，会启动一个Dalvik VM进程，系统会给它分配固定的内存空间（16M,32M不定），这块内存空间会映射到RAM上某个区域。然后这个Android程序就会运行在这块空间上。Java里会将这块空间分成Stack栈内存和Heap堆内存。stack（栈区）里存放对象的引用，heap(堆区)里存放实际对象数据。</p>
+<p>在程序运行中会创建对象，如果未合理管理内存，比如不及时回收无效空间就会造成内存泄露，严重的话可能导致使用内存超过系统分配内存，即内存溢出OOM，导致程序卡顿甚至直接退出。<br>其实很多方面都会导致内存紧张：<br>1、图片问题<br>2、资源释放问题<br>4、代码层次的优化</p>
+<a id="more"></a>
 <h2 id="关于图片"><a href="#关于图片" class="headerlink" title="关于图片"></a>关于图片</h2><h3 id="网络图片"><a href="#网络图片" class="headerlink" title="网络图片"></a>网络图片</h3><p>android默认颜色模式为ARGB_8888，显示质量最高，占用内存最大。若要求不高时可采用RGB_565等模式。图片大小：图片长度x宽度x单位像素所占据字节数</p>
 <table>
 <thead>
@@ -162,30 +155,26 @@
 <table>
 <thead>
 <tr>
-<th>dpi</th>
-<th>分辨率</th>
+<th>状态</th>
+<th>解释</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>TRIM_MEMORY_RUNNING_MODERATE</td>
-<td>表示应用程序正常运行，并且不会被杀掉。但是目前手机的内存已经有点低了，系统可能会开始根据LRU缓存规则来去杀死进程了。</td>
-<td></td>
+<td>表示应用程序正常运行，并且不会被杀掉。但是目前手机的内存已经有点低了，系统可能会开始根据LRU缓存规则来去杀死进程了</td>
 </tr>
 <tr>
 <td>TRIM_MEMORY_RUNNING_LOW</td>
-<td>表示应用程序正常运行，并且不会被杀掉。但是目前手机的内存已经非常低了，我们应该去释放掉一些不必要的资源以提升系统的性能，同时这也会直接影响到我们应用程序的性能。</td>
-<td></td>
+<td>表示应用程序正常运行，并且不会被杀掉。但是目前手机的内存已经非常低了，我们应该去释放掉一些不必要的资源以提升系统的性能，同时这也会直接影响到我们应用程序的性能</td>
 </tr>
 <tr>
 <td>TRIM_MEMORY_RUNNING_CRITICAL</td>
-<td>表示应用程序仍然正常运行，但是系统已经根据LRU缓存规则杀掉了大部分缓存的进程了。这个时候我们应当尽可能地去释放任何不必要的资源，不然的话系统可能会继续杀掉所有缓存中的进程，并且开始杀掉一些本来应当保持运行的进程，比如说后台运行的服务。</td>
-<td></td>
+<td>表示应用程序仍然正常运行，但是系统已经根据LRU缓存规则杀掉了大部分缓存的进程了。这个时候我们应当尽可能地去释放任何不必要的资源，不然的话系统可能会继续杀掉所有缓存中的进程，并且开始杀掉一些本来应当保持运行的进程，比如说后台运行的服务</td>
 </tr>
 <tr>
 <td>TRIM_MEMORY_UI_HIDDEN</td>
 <td>当用户打开了另外一个程序，我们的程序界面已经不再可见的时候</td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -206,17 +195,9 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;内存&quot;&gt;&lt;a href=&quot;#内存&quot; class=&quot;headerlink&quot; title=&quot;内存&quot;&gt;&lt;/a&gt;内存&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;Android系统中内存有两个概念，一个是物理内存和进程内存。
-
-物理内存即移动设备上的RAM，当启动一个Android程序时，会启动一个Dalvik VM进程，系统会给它分配固定的内存空间（16M,32M不定），这块内存空间会映射到RAM上某个区域。然后这个Android程序就会运行在这块空间上。Java里会将这块空间分成Stack栈内存和Heap堆内存。stack（栈区）里存放对象的引用，heap(堆区)里存放实际对象数据。
-
-在程序运行中会创建对象，如果未合理管理内存，比如不及时回收无效空间就会造成内存泄露，严重的话可能导致使用内存超过系统分配内存，即内存溢出OOM，导致程序卡顿甚至直接退出。
-
-其实很多方面都会导致内存紧张：
-1、图片问题
-2、资源释放问题
-4、代码层次的优化
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;p&gt;Android系统中内存有两个概念，一个是物理内存和进程内存。&lt;/p&gt;
+&lt;p&gt;物理内存即移动设备上的RAM，当启动一个Android程序时，会启动一个Dalvik VM进程，系统会给它分配固定的内存空间（16M,32M不定），这块内存空间会映射到RAM上某个区域。然后这个Android程序就会运行在这块空间上。Java里会将这块空间分成Stack栈内存和Heap堆内存。stack（栈区）里存放对象的引用，heap(堆区)里存放实际对象数据。&lt;/p&gt;
+&lt;p&gt;在程序运行中会创建对象，如果未合理管理内存，比如不及时回收无效空间就会造成内存泄露，严重的话可能导致使用内存超过系统分配内存，即内存溢出OOM，导致程序卡顿甚至直接退出。&lt;br&gt;其实很多方面都会导致内存紧张：&lt;br&gt;1、图片问题&lt;br&gt;2、资源释放问题&lt;br&gt;4、代码层次的优化&lt;/p&gt;
     
     </summary>
     
@@ -236,9 +217,9 @@
     <link href="http://www.yefangqingchen.com/2017/03/31/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/"/>
     <id>http://www.yefangqingchen.com/2017/03/31/Android性能优化-布局优化总结/</id>
     <published>2017-03-31T10:21:45.000Z</published>
-    <updated>2017-04-06T07:52:40.000Z</updated>
+    <updated>2017-04-06T08:26:50.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="UI渲染"><a href="#UI渲染" class="headerlink" title="UI渲染"></a>UI渲染</h1><p>现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的布局控件（包括第三方复杂控件）多了之后，Activity的onCreate流程，特别是UI的布局与渲染操作，布局过于复杂很可能导致严重的启动性能问题。我们有时候用一些APP是不是经常遇见一些界面启动很慢，白屏等 ？</p>
+    <content type="html"><![CDATA[<p>现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的布局控件（包括第三方复杂控件）多了之后，Activity的onCreate流程，特别是UI的布局与渲染操作，布局过于复杂很可能导致严重的启动性能问题。我们有时候用一些APP是不是经常遇见一些界面启动很慢，白屏等 ？</p>
 <p>为什么界面布局多了之后，会造成渲染慢 、卡顿、白屏等 ？</p>
 <p>在[胡凯]的博客中看到过。正常来说Android系统每隔16ms发出Vsync信号，触发对UI进行渲染，如果每次渲染都成功，这样就能够达到流畅的画面所需要的60fps，为了能够实现60fps，这意味着程序的大多数操作都必须在16ms内完成。但是当有个操作需要比更多的时间来渲染时，系统在得到Vsync信号后就无法正常在16ms内完成渲染，所以就会出现丢帧现象，从而觉得卡顿。最具有代表性的就是ListView了。</p>
  <a id="more"></a>
@@ -387,7 +368,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;UI渲染&quot;&gt;&lt;a href=&quot;#UI渲染&quot; class=&quot;headerlink&quot; title=&quot;UI渲染&quot;&gt;&lt;/a&gt;UI渲染&lt;/h1&gt;&lt;p&gt;现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的布局控件（包括第三方复杂控件）多了之后，Activity的onCreate流程，特别是UI的布局与渲染操作，布局过于复杂很可能导致严重的启动性能问题。我们有时候用一些APP是不是经常遇见一些界面启动很慢，白屏等 ？&lt;/p&gt;
+      &lt;p&gt;现在的APP有很多很炫的效果，没办法这是产品要求，产品想让用户能看到更好的效果，动画，这样有些效果就造成了 布局文件 里的布局叠加，一层一层的。当层叠的布局控件（包括第三方复杂控件）多了之后，Activity的onCreate流程，特别是UI的布局与渲染操作，布局过于复杂很可能导致严重的启动性能问题。我们有时候用一些APP是不是经常遇见一些界面启动很慢，白屏等 ？&lt;/p&gt;
 &lt;p&gt;为什么界面布局多了之后，会造成渲染慢 、卡顿、白屏等 ？&lt;/p&gt;
 &lt;p&gt;在[胡凯]的博客中看到过。正常来说Android系统每隔16ms发出Vsync信号，触发对UI进行渲染，如果每次渲染都成功，这样就能够达到流畅的画面所需要的60fps，为了能够实现60fps，这意味着程序的大多数操作都必须在16ms内完成。但是当有个操作需要比更多的时间来渲染时，系统在得到Vsync信号后就无法正常在16ms内完成渲染，所以就会出现丢帧现象，从而觉得卡顿。最具有代表性的就是ListView了。&lt;/p&gt;
     
@@ -566,7 +547,7 @@ $ react-<span class="keyword">native</span> run-android
     <link href="http://www.yefangqingchen.com/2017/03/29/Android%E6%AD%A3%E5%B8%B8%E6%9D%83%E9%99%90%E5%92%8C%E5%8D%B1%E9%99%A9%E6%9D%83%E9%99%90/"/>
     <id>http://www.yefangqingchen.com/2017/03/29/Android正常权限和危险权限/</id>
     <published>2017-03-29T05:31:33.000Z</published>
-    <updated>2017-03-29T08:01:34.000Z</updated>
+    <updated>2017-04-06T08:26:49.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Android 6.0（API 级别 23）权限越来越规范，不像以往那样直接在AndroidManifest.xml 中使用 uses-permission 标签是声明你所要的权限就可以使用了。现在的权限分为 正常权限合危险权限、以及特殊权限。 </p>
