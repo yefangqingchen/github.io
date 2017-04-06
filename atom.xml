@@ -40,14 +40,15 @@
   
   <entry>
     <title>Android 内存优化</title>
-    <link href="http://www.yefangqingchen.com/2017/04/06/Android-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/"/>
-    <id>http://www.yefangqingchen.com/2017/04/06/Android-内存优化/</id>
-    <published>2017-04-06T07:53:09.000Z</published>
-    <updated>2017-04-06T08:28:42.000Z</updated>
+    <link href="http://www.yefangqingchen.com/2017/04/01/Android-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/"/>
+    <id>http://www.yefangqingchen.com/2017/04/01/Android-内存优化/</id>
+    <published>2017-04-01T07:53:09.000Z</published>
+    <updated>2017-04-06T08:33:06.000Z</updated>
     
     <content type="html"><![CDATA[<p>Android系统中内存有两个概念，一个是物理内存和进程内存。</p>
 <p>物理内存即移动设备上的RAM，当启动一个Android程序时，会启动一个Dalvik VM进程，系统会给它分配固定的内存空间（16M,32M不定），这块内存空间会映射到RAM上某个区域。然后这个Android程序就会运行在这块空间上。Java里会将这块空间分成Stack栈内存和Heap堆内存。stack（栈区）里存放对象的引用，heap(堆区)里存放实际对象数据。</p>
-<p>在程序运行中会创建对象，如果未合理管理内存，比如不及时回收无效空间就会造成内存泄露，严重的话可能导致使用内存超过系统分配内存，即内存溢出OOM，导致程序卡顿甚至直接退出。<br>其实很多方面都会导致内存紧张：<br>1、图片问题<br>2、资源释放问题<br>4、代码层次的优化</p>
+<p>在程序运行中会创建对象，如果未合理管理内存，比如不及时回收无效空间就会造成内存泄露，严重的话可能导致使用内存超过系统分配内存，即内存溢出OOM，导致程序卡顿甚至直接退出。</p>
+<p>其实很多方面都会导致内存紧张：<br>        1、图片问题<br>        2、资源释放问题<br>        4、代码层次的优化</p>
 <a id="more"></a>
 <h2 id="关于图片"><a href="#关于图片" class="headerlink" title="关于图片"></a>关于图片</h2><h3 id="网络图片"><a href="#网络图片" class="headerlink" title="网络图片"></a>网络图片</h3><p>android默认颜色模式为ARGB_8888，显示质量最高，占用内存最大。若要求不高时可采用RGB_565等模式。图片大小：图片长度x宽度x单位像素所占据字节数</p>
 <table>
@@ -197,7 +198,8 @@
     
       &lt;p&gt;Android系统中内存有两个概念，一个是物理内存和进程内存。&lt;/p&gt;
 &lt;p&gt;物理内存即移动设备上的RAM，当启动一个Android程序时，会启动一个Dalvik VM进程，系统会给它分配固定的内存空间（16M,32M不定），这块内存空间会映射到RAM上某个区域。然后这个Android程序就会运行在这块空间上。Java里会将这块空间分成Stack栈内存和Heap堆内存。stack（栈区）里存放对象的引用，heap(堆区)里存放实际对象数据。&lt;/p&gt;
-&lt;p&gt;在程序运行中会创建对象，如果未合理管理内存，比如不及时回收无效空间就会造成内存泄露，严重的话可能导致使用内存超过系统分配内存，即内存溢出OOM，导致程序卡顿甚至直接退出。&lt;br&gt;其实很多方面都会导致内存紧张：&lt;br&gt;1、图片问题&lt;br&gt;2、资源释放问题&lt;br&gt;4、代码层次的优化&lt;/p&gt;
+&lt;p&gt;在程序运行中会创建对象，如果未合理管理内存，比如不及时回收无效空间就会造成内存泄露，严重的话可能导致使用内存超过系统分配内存，即内存溢出OOM，导致程序卡顿甚至直接退出。&lt;/p&gt;
+&lt;p&gt;其实很多方面都会导致内存紧张：&lt;br&gt;        1、图片问题&lt;br&gt;        2、资源释放问题&lt;br&gt;        4、代码层次的优化&lt;/p&gt;
     
     </summary>
     
@@ -1292,9 +1294,9 @@ java.lang.SecurityException: Permission Denial: reading com.android.providers.me
       <category term="其他" scheme="http://www.yefangqingchen.com/categories/%E5%BF%83%E6%83%85%E6%9D%82%E8%AE%B0/%E5%85%B6%E4%BB%96/"/>
     
     
-      <category term="其他" scheme="http://www.yefangqingchen.com/tags/%E5%85%B6%E4%BB%96/"/>
-    
       <category term="心情杂记" scheme="http://www.yefangqingchen.com/tags/%E5%BF%83%E6%83%85%E6%9D%82%E8%AE%B0/"/>
+    
+      <category term="其他" scheme="http://www.yefangqingchen.com/tags/%E5%85%B6%E4%BB%96/"/>
     
   </entry>
   
